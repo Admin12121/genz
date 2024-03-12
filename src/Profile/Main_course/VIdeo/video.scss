@@ -1,0 +1,95 @@
+.code-editor {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	margin: 40px auto 0 auto;
+    width: 100%;
+   	text-align: left;
+   	border-radius: 0 0 5px 5px;
+   	overflow: auto;
+   	-webkit-transition: all .5s ease-in-out;
+    -moz-transition: wall .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.coder-span-example{
+	// content: 'Code Editor'; 
+	font-family: 'Consolas';
+	color: var(--main-app);
+	padding: 5px 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 30px;
+	background-color: var(--projects-section);
+	border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-o-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+    span{
+        display: flex;
+        gap: 5px;
+        cursor: pointer;
+    }
+}
+
+pre{
+	@media (max-width: 700px) {
+		padding: 5px !important;
+	}
+}
+/* -- iPad Screen -- */
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+	.code-editor {
+   		width: 100%; 
+	}
+
+	.code-editor:before {
+		width: 100%;
+	}
+}
+@media only screen and (max-width: 650px) {
+	.code-editor {
+		   width: 420px; 
+	}
+	
+	.code-editor:before {
+		width: 420px;
+	}
+	
+}
+
+/* -- iPhone Screen -- */
+@media only screen and (max-width: 569px) {
+	.code-editor {
+		width: 380px;
+	}	
+
+	.code-editor:before {
+		width: 380px;
+	}
+}
+
+@media only screen and (max-width: 470px) {
+	.code-editor {
+		width: 300px;
+	}	
+
+	.code-editor:before {
+		width: 300px;
+	}
+}
+
+@media only screen and (max-width: 390px) {
+	.code-editor {
+		width: 270px;
+	}	
+
+	.code-editor:before {
+		width: 270px;
+	}
+}
+

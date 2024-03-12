@@ -1,0 +1,85 @@
+.Begin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    font-family: "rene-bieder-milliard-medium";
+    @media (max-width: 800px) {
+        flex-direction: column;
+        // align-content: center;
+    }
+
+
+    #three {
+        height: 100%;
+        width: 90%;
+        @media (max-width: 1200px) {
+            display: none;
+        }
+    }
+
+    main {
+        height: 100%;
+        width: 100%;
+    }
+
+    .Begin_text_wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px 50px;
+        color: #656abb;
+
+        @media (max-width: 640px) {       
+                padding: 20px 20px;
+            
+         }
+
+        h1{
+            font-size: 3vw;
+            color: #443091;
+        }
+        p{
+            color: #656abb;
+        }
+        span {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            button {
+                display: flex;
+                padding: 15px 30px;
+                border: none;
+                border-radius: 14px;
+                background: #443091;
+                color: #fff;
+                font-size: 15px;
+                
+        @media (max-width: 640px) {       
+            padding: 15px 15px;
+        
+     }
+            }
+        }
+    }
+    .small_screen{
+        width: 80%;
+        display: none;
+        @media (max-width: 1200px) {
+            display: flex;
+            align-items: center;
+            justify-content: center;        }
+        img{
+            width: 400px;
+        }
+        @media (max-width: 540px) {       
+            img{
+                width: 300px;
+            }
+         }
+    }
+}

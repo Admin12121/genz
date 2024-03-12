@@ -1,0 +1,110 @@
+ .MuiSlider-thumb{
+   margin-top: 0px !important;
+  
+ } 
+ .MuiContainer-maxWidthMd{
+   max-width: 100% !important;
+ }
+
+.control_Container {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 14px;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+ }
+ 
+ .top_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 20px;
+
+ }
+ 
+ .mid__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+ .icon__btn {
+    padding: 0 10px;
+    color: #443091;
+   }
+   .iconbtn{
+      font-size: 15px;
+      color: #443091;
+ }
+ 
+ .slider__container {
+    /* width: 100%; */
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+ }
+ 
+ .control__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+ }
+ 
+ .inner__controls {
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    /* width: 50%; */
+ }
+ 
+ #vid_time {
+    color: #443091;
+    font-size: 0.8rem;
+   }
+   .ntr{
+      margin-left: 10px;
+ }
+ .second__control {
+  display: flex;
+  align-items: center;
+ }
+ /* .core .Course_OverView .Cont_Topic .Title_content span {
+   align-items: normal;
+   
+ } */
+#vid_time{
+   padding: 0 10px;
+}
+
+@media screen and (max-width: 780px) {
+   .top_container h2{
+      font-size: 15px;
+   }
+   #vid_time{
+      width: 100%;
+   }
+   .MuiSlider-root{
+      height: 2px !important;
+      padding: 0 !important;
+   }
+   .icon__btn{
+      font-size: 5px;
+   }
+   .MuiContainer-root{
+      padding: 0 !important;
+   }
+}
+
+@media screen and (max-width: 520px) {
+   .top_container h2{
+      font-size: 10px;
+   }
+
+}

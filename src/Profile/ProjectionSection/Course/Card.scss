@@ -1,0 +1,90 @@
+.Course_card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border-radius: 0.75rem;
+    width: 20rem;
+    color: var(--main-color);
+    // color: #374151;
+    background-clip: border-box;
+    background-color: var(--card-transparent);
+    box-shadow: var(--box-shadow);
+
+    .course_image {
+        overflow: hidden;
+        position: relative;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: -1.5rem;
+        border-radius: 0.75rem;
+        height: 10rem;
+        background-clip: border-box;
+        background-image: linear-gradient(to right, var(--tw-gradient-stops));
+        background-color: #3B82F6;
+        background-color: #2563EB;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .text_area {
+        padding: 1.5rem;
+
+        h1 {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-weight: 600;
+            letter-spacing: 0;
+            line-height: 1.375;
+
+        }
+
+        p {
+            display: block;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 1rem;
+            line-height: 1.5rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-weight: 300;
+            line-height: 1.625;
+
+
+        }
+    }
+
+    .Course_button_link {
+        padding: 1.5rem;
+        padding-top: 0;
+
+        a {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            border-radius: 0.5rem;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 0.75rem;
+            line-height: 1rem;
+            font-weight: 700;
+            text-align: center;
+            color: #ffffff;
+            vertical-align: middle;
+            background-color: #443091;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+            user-select: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+        }
+    }
+}

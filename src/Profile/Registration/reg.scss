@@ -1,0 +1,34 @@
+.projects-section {
+
+    .sec_wra_admission {
+
+        height: unset;
+
+        .container_form_wrapper {
+            padding: 0;
+            color: var(--main-color);
+            background-color: var(--projects-section);
+
+            header {
+                color: var(--main-color);
+            }
+
+            form{
+                background: var(--projects-section);
+                width: 100%;
+                .form {
+                    background-color: var(--projects-section) !important;
+                }
+    
+                .form-title{
+                    color: var(--main-color);
+                }
+                .fields{
+                    label{
+                        color: var(--main-color)!important ;
+                    }
+                }
+            }
+        }
+    }
+}

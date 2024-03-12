@@ -1,0 +1,118 @@
+$color_1: #fff;
+$color_2: #666666;
+$color_3: #333;
+$background-color_1: #4070f4;
+$background-color_2: #0e4bf1;
+
+@keyframes progress {
+	100% {
+		right: 100%;
+	}
+}
+.toast {
+	position: absolute;
+	top: 25px;
+	// width: 300px;
+	right: 30px;
+	z-index: 99999;
+	border-radius: 12px;
+	background: #fff;
+	padding: 20px 35px 20px 25px;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+	border-left: 6px solid #4070f4;
+	overflow: hidden;
+	transform: translateX(calc(100% + 30px));
+	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+	.toast-content {
+		display: flex;
+		align-items: center;
+	}
+	.close {
+		position: absolute;
+		top: 10px;
+		right: 15px;
+		padding: 5px;
+		cursor: pointer;
+		opacity: 0.7;
+		&:hover {
+			opacity: 1;
+		}
+	}
+	.progress {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 3px;
+		width: 100%;
+		background: #ddd;
+		&:before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			height: 100%;
+			width: 100%;
+			background-color: $background-color_1;
+		}
+	}
+}
+.toast.active {
+	transform: translateX(0%);
+	~ {
+		button {
+			pointer-events: none;
+		}
+	}
+}
+.toast-content {
+	.check {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 35px;
+		width: 35px;
+		// background-color: $background-color_1;
+		color: $color_1;
+		font-size: 20px;
+		border-radius: 50%;
+		img{
+			width: 30px;
+		}
+	}
+	.message {
+		display: flex;
+		flex-direction: column;
+		margin: 0 20px;
+	}
+}
+.message {
+	.textt {
+		font-size: 15px;
+		font-weight: 400;
+		color: $color_2;
+	}
+	.textt.text-1 {
+		font-size: 20px;
+		font-weight: 600;
+		color: $color_3;
+	}
+}
+.progress.active {
+	&:before {
+		animation: progress 5s linear forwards;
+	}
+}
+// button {
+// 	padding: 12px 20px;
+// 	font-size: 20px;
+// 	outline: none;
+// 	border: none;
+// 	background-color: $background-color_1;
+// 	color: $color_1;
+// 	border-radius: 6px;
+// 	cursor: pointer;
+// 	transition: 0.3s;
+// 	&:hover {
+// 		background-color: $background-color_2;
+// 	}
+// }

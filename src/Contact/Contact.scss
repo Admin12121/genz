@@ -1,0 +1,211 @@
+.Contact_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 100px;
+    flex-direction: column;
+    gap: 100px;
+
+    .contact_header_wrapper {
+        font-family: 'rene-bieder-milliard-medium';
+        font-size: 2.5vw;
+        text-align: center;
+
+        p {
+            font-family: "rene-bieder-milliard-light";
+            font-size: 1.1vw;
+        }
+    }
+
+}
+.contact_form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 150px;
+    // scroll-snap-align: center;
+    @media (max-width: 1000px) {
+        // height: unset;
+        scroll-snap-align: none;
+      }
+      @media (max-width: 1200px) {
+        padding: 0;
+     }
+    .contact_form_data{
+        gap: 70px;
+        display: flex;
+    }
+    .contact_form_box {
+        display: flex;
+        padding: 40px 24px;
+        flex-direction: column;
+        gap: 15px;
+        flex: 1 0 0;
+        width: 60%;
+        height: 100%;
+        border-radius: 12px;
+        box-shadow: 0px 0.221px 2.795px 0px rgba(0, 0, 0, 0.01), 0px 0.532px 6.717px 0px rgba(0, 0, 0, 0.02), 0px 1.002px 12.647px 0px rgba(0, 0, 0, 0.03), 0px 1.787px 22.56px 0px rgba(0, 0, 0, 0.03), 0px 3.342px 42.195px 0px rgba(0, 0, 0, 0.04), 0px 8px 101px 0px rgba(0, 0, 0, 0.05);
+
+        span {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 100%;
+        }
+
+        label {
+            font-family: "rene-bieder-milliard-light";
+        }
+
+        input {
+            display: flex;
+            height: 45px;
+            padding: 16px 10px;
+            align-items: center;
+            align-self: stretch;
+            border-radius: 8px;
+            width: 100%;
+            border: 1px solid #DFE2E6;
+        }
+
+        .user_name {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            width: 100%;
+
+            .hdr {
+                width: 50%;
+            }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            select {
+                display: flex;
+                height: 50px;
+                padding: 16px 10px;
+                align-items: center;
+                align-self: stretch;
+                border-radius: 8px;
+                width: 100%;
+                color: #888888;
+                border: 1px solid #DFE2E6;
+
+                .option {
+                    display: flex;
+                    height: 50px;
+                    padding: 16px 0;
+                    align-items: center;
+                    align-self: stretch;
+                    border-radius: 8px;
+                    width: 100%;
+                    border: 1px solid #DFE2E6;
+                }
+            }
+        }
+
+        textarea {
+            display: flex;
+            height: 100px;
+            padding: 16px 10px;
+            align-items: center;
+            align-self: stretch;
+            border-radius: 8px;
+            width: 100%;
+            border: 1px solid #DFE2E6;
+        }
+
+        button {
+            display: flex;
+            padding: 15px 30px;
+            width: 200px;
+            border: none;
+            border-radius: 14px;
+            background: #443091;
+            color: #fff;
+            font-size: 1.2vw;
+        }
+
+    }
+
+    .contact_form_text{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        font-family: "rene-bieder-milliard-light";
+        width: 50%;
+        padding: 20px 20px;
+        span{
+            h2{
+                color:  #443091;
+                font-size: 1vw;
+            }
+            span{
+                p{
+                    font-size: .8vw;
+                }
+            }
+        }
+        #mess{
+            height: 450px;
+            width: 450px;
+            @media (max-width: 1200px) {
+              display: none;
+             }
+        }
+        #messs{
+            height: 450px;
+            width: 450px;
+            display: none;
+            @media (max-width: 1200px) {
+              display: block;
+             }
+        }
+    }
+}
+.cont_box_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    box-shadow: 0px 0.221px 2.795px 0px rgba(0, 0, 0, 0.001), 0px 0.532px 6.717px 0px rgba(0, 0, 0, 0.002), 0px 1.002px 12.647px 0px rgba(0, 0, 0, 0.003), 0px 1.787px 22.56px 0px rgba(0, 0, 0, 0.003), 0px 3.342px 42.195px 0px rgba(0, 0, 0, 0.004), 0px 8px 101px 0px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    height: 30vh;
+    border-radius: 16px;
+    font-family: "rene-bieder-milliard-light";
+
+    .Cont_card{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px 50px;
+        gap: 30px;
+        div{
+            font-size: 2vw;
+        }
+        #Phone{
+            color: #613df3;
+            box-shadow: 0 0 0 #613df3;
+        }
+        #Headquater{
+            color: #0edf99;
+
+        }
+        #Email{
+            color: #2979fe;
+        }
+        span{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+}

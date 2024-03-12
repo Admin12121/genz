@@ -1,0 +1,136 @@
+$color_1: white;
+$color_2: rgba(255, 255, 255, 0.5);
+$color_3: #5D21D2;
+$color_4: #EEE9F8;
+$font-family_1: "Inter", sans-serif;
+$font-family_2: inherit;
+$background-color_1: #5D21D2;
+$background-color_2: transparent;
+
+@import "https://rsms.me/inter/inter.css";
+html {
+	font-family: $font-family_1;
+}
+// .restbody {
+// 	font-family: $font-family_1;
+// 	// background: #F3F5F7;
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	height: 100vh;
+// }
+#restsection{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+input {
+	font-family: $font-family_2;
+}
+button {
+	font-family: $font-family_2;
+}
+.restcard {
+	width: 540px;
+	background-color: $background-color_1;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(93, 33, 210, 0.15);
+}
+.restheader {
+	padding: 36px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	color: $color_1;
+	border-bottom: 2px solid #724CD1;
+	.restleft {
+		display: flex;
+		align-items: center;
+		.resttext {
+			display: flex;
+			flex-direction: column;
+			margin-left: 26px;
+			.h {
+				font-weight: bold;
+				font-size: 28px;
+			}
+			.b {
+				margin-top: 4px;
+				font-size: 18px;
+				color: $color_2;
+			}
+		}
+	}
+	.icon_backdrop {
+		width: 64px;
+		height: 64px;
+		background: #724CD1;
+		border-radius: 24px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	button {
+		background-color: $background-color_2;
+		border: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		outline: none;
+	}
+}
+.restbody {
+	padding: 24px;
+	align-items: normal;
+	.restinput {
+		display: flex;
+		flex-direction: column;
+		label {
+			font-size: 18px;
+			color: $color_2;
+		}
+		input {
+			background: #40158F;
+			border-radius: 8px;
+			border: 1px solid #40158F;
+			padding: 15px 12px;
+			font-size: 18px;
+			margin-top: 8px;
+			outline: none;
+			color: $color_1;
+			&::-moz-placeholder {
+				color: $color_2;
+			}
+			&:-ms-input-placeholder {
+				color: $color_2;
+			}
+			&::placeholder {
+				color: $color_2;
+			}
+		}
+	}
+	.action {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		button {
+			margin-top: 24px;
+			background: #FFFFFF;
+			border-radius: 8px;
+			padding: 15px;
+			font-size: 18px;
+			color: $color_3;
+			cursor: pointer;
+			border: none;
+			outline: none;
+		}
+		a {
+			margin-top: 20px;
+			font-size: 16px;
+			color: $color_4;
+			text-decoration: none;
+			text-align: center;
+		}
+	}
+}

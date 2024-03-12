@@ -1,0 +1,36 @@
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* body {
+  font-family: inter;
+  color: black;
+  background: #202025;
+} */
+::-webkit-scrollbar {
+  width: 1px;
+}
+.content {
+  /* padding: 120px 50px; */
+  width: 334px;
+  height: 216px;
+  background: #f0f0f0;
+  border-radius: 3px;
+  overflow-x: hidden;
+  background: #04090f;
+  /* padding: 0; */
+  /* display: none; */
+}
+
+.wrapper {
+  padding: 10px;
+  width: 668px;
+  /* height: 432px; */
+  height: 100%;
+  transform: scale(0.5);
+  transform-origin: top left;
+  background: #04090f;
+}
+

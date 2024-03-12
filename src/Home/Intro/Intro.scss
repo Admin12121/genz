@@ -1,0 +1,196 @@
+@font-face {
+    font-family: 'rene-bieder-milliard-medium';
+    src: url('../../assets/Rene-Bieder-Milliard-Medium.otf') format('opentype');
+}
+@font-face {
+    font-family: 'rene-bieder-milliard-light';
+    src: url('../../assets/Rene-Bieder-Milliard-light.otf') format('opentype');
+}
+
+canvas{
+    @media (max-width: 1130px) {
+      width: 475px;
+      height: 615px;
+  }
+  }
+.Home_frist_page{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: "rene-bieder-milliard-medium";
+
+    .Home_text_wrapper{
+        width: 50%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        padding: 0 50px;
+        justify-content: center;
+        @media (max-width: 1150px) {
+            width: 70%;
+        }
+        @media (max-width: 900px) {
+            width: unset;
+      }
+        h1{
+            overflow: hidden;
+            font-size: 3vw;
+            @media (max-width: 900px) {
+               font-size: 30px;
+          }
+        }
+        p{
+            font-family: "rene-bieder-milliard-light";
+        }
+        button{
+            display: flex;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 14px;
+            background: #443091;
+            color: #fff;
+            font-size: 1.2vw;
+            @media (max-width: 850px) {
+                font-size: 15px;
+            }
+        }
+
+        .Home_but{
+            display: flex;
+            gap: 20px;
+            .AdminHome_button{
+                button {
+                    position: relative;
+                    display: inline-block;
+                    cursor: pointer;
+                    outline: none;
+                    border: 0;
+                    vertical-align: middle;
+                    text-decoration: none;
+                    background: transparent;
+                    padding: 0;
+                    font-size: inherit;
+                    font-family: inherit;
+                   }
+                   
+                   button.learn-more {
+                    width: 15rem;
+                    height: auto;
+                   }
+                   
+                   button.learn-more .circle {
+                    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                    position: relative;
+                    display: block;
+                    margin: 0;
+                    width: 3rem;
+                    height: 3rem;
+                    background: #282936;
+                    border-radius: 1.625rem;
+                   }
+                   
+                   button.learn-more .circle .icon {
+                    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    background: #fff;
+                   }
+                   
+                   button.learn-more .circle .icon.arrow {
+                    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                    left: 0.625rem;
+                    width: 1.125rem;
+                    height: 0.125rem;
+                    background: none;
+                   }
+                   
+                   button.learn-more .circle .icon.arrow::before {
+                    position: absolute;
+                    content: "";
+                    top: -0.29rem;
+                    right: 0.0625rem;
+                    width: 0.625rem;
+                    height: 0.625rem;
+                    border-top: 0.125rem solid #fff;
+                    border-right: 0.125rem solid #fff;
+                    transform: rotate(45deg);
+                   }
+                   
+                   button.learn-more .button-text {
+                    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    padding: 0.75rem 0;
+                    margin: 0 0 0 1.85rem;
+                    color: #282936;
+                    font-weight: 700;
+                    line-height: 1.6;
+                    text-align: center;
+                    text-transform: uppercase;
+                   }
+                   
+                   button:hover .circle {
+                    width: 100%;
+                   }
+                   
+                   button:hover .circle .icon.arrow {
+                    background: #fff;
+                    transform: translate(1rem, 0);
+                   }
+                   
+                   button:hover .button-text {
+                    color: #fff;
+                   }
+            }
+        }
+
+    }
+    .mobile_display{
+        display: none;
+        transition: 1s ease-in-out;
+        .imagee{
+            transition: .5s ease-in-out;
+            transition-duration: 1s ;
+            width: 450px;
+            @media (max-width: 600px) {
+                display: none;
+                // width: 350px;
+            }
+        }
+        @media (max-width: 1150px) {
+            display: flex;
+        }
+        @media (max-width: 850px) {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        @media (max-width: 800px) {
+             right: 0;
+        }
+    }
+    .home_wrapper{
+        width: 730px;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        @media (max-width: 1150px) {
+            display: none;
+        }
+    }
+}
+
+
+
+
+

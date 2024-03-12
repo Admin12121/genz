@@ -1,0 +1,103 @@
+.Learn_wrapper {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    padding: 20px 50px;
+    gap: 30px;
+    font-family: "rene-bieder-milliard-medium";
+    color: #443091;
+
+    .Learn_text {
+        font-size: 2vw;
+        @media (max-width: 1150px) {
+            font-size: 3vw;
+        }
+        @media (max-width: 650px) {
+            font-size: 4vw;
+        }
+    }
+
+    .Card_box_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        @media (max-width: 1150px) {
+            flex-wrap: wrap;
+        }
+        .card_box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 10px 50px;
+            width: 350px;
+            gap: 20px;
+
+            span {
+                height: 200px;
+                width: 250px;
+                border-radius: 5%;
+                box-shadow: 0 0 20px 0 rgba(29, 31, 89, .1);
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: contain;
+
+                }
+                @media (max-width: 1130px) {
+                    width: 350px;
+                    height: 350px;
+                }
+            }
+
+            .box_text {
+                display: flex;
+                flex-direction: column;
+
+                h1 {
+                    font-size: 1.6vw;
+                    color: #1e266d;
+                    @media (max-width: 1150px) {
+                        font-size: 3vw;
+                    }
+                    @media (max-width: 650px) {
+                        font-size: 4.5vw;
+                    }
+                }
+
+                p {
+                    font-family: "rene-bieder-milliard-light";
+                    font-size: 1.2vw;
+                    color: #656abb;
+                    @media (max-width: 1150px) {
+                        font-size: 2.5vw;
+                    }
+                    @media (max-width: 650px) {
+                        font-size: 3.5vw;
+                    }
+                }
+            }
+        }
+    }
+    button{
+        display: flex;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 14px;
+        background: #443091;
+        color: #fff;
+        font-size: 1.2vw;
+        @media (max-width: 650px) {
+            font-size: 3.5vw;
+        }
+    }
+    span{
+        display: flex;
+        gap: 20px;
+    }
+}

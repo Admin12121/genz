@@ -1,0 +1,13 @@
+#bg-developer_mode{
+    background: #151417;
+    height: 100vh;
+    padding: 90px 0 0 0;
+    @media (max-width: 1000px) {
+        height: unset;
+    }
+}
+#serv{
+    @media (max-width: 1000px) {
+        height: unset;
+    }
+}

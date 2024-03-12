@@ -1,0 +1,156 @@
+$color_1: #868686;
+$color_2: #AD7D52;
+$font-family_1: 'Roboto Slab', serif;
+$font-family_2: 'Raleway', sans-serif;
+$background-color_1: #D2DBDD;
+$background-color_2: #fff;
+$background-color_3: transparent;
+
+@import "https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700";
+@import "https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i";
+
+
+.students_Prog {
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+    align-items: center;
+	justify-content: center;
+	-webkit-justify-content: center;
+	height: 100%;
+	width: 100%;
+	gap: 50px;
+	
+	.Students_card_wrapper{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 50px;
+	}
+.card__image {
+	visibility: hidden;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 305px;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+}
+.card__info-hover {
+	position: absolute;
+	padding: 16px;
+	width: 100%;
+	opacity: 0;
+	top: 0;
+}
+.card__img--hover {
+	transition: 0.2s all ease-out;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	height: 305px;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	top: 0;
+    overflow: hidden;
+}
+.card_link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    .marty{
+        width: 100%;
+		height: 305px;
+		object-fit: contain;
+        position: absolute;
+        // top: -40px;
+         opacity: 0;
+        transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    }
+    .martyr{
+        width: 100%;
+		object-fit: contain;
+		height: 305px;
+        position: absolute;
+        // top: -40px;
+		top: 0;
+        opacity: 1;
+        transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+    }
+}
+.students_card {
+	transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+	background-color: $background-color_2;
+	width: 350px;
+
+	position: relative;
+	border-radius: 12px;
+	// overflow: hidden;
+	box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+	&:hover {
+		box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+		transform: scale(1.10, 1.10);
+        .martyr{
+            opacity: 1;
+            scale: 1.1;
+            top: -20px;
+        }
+		.card__img--hover {
+			height: 100%;
+			opacity: 0.3;
+            img{
+                opacity: 0;
+                top: -20px;
+                scale: 1.1;
+            }
+		}
+		.card__info {
+			background-color: $background-color_3;
+			position: relative;
+		}
+		.card__info-hover {
+			opacity: 1;
+		}
+	}
+}
+.card__info {
+	z-index: 2;
+	background-color: $background-color_2;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	padding: 16px 24px 24px 24px;
+}
+.card__category {
+	font-family: $font-family_2;
+	text-transform: uppercase;
+	font-size: 13px;
+	letter-spacing: 2px;
+	font-weight: 500;
+	color: $color_1;
+}
+.card__title {
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-family: $font-family_1;
+}
+.card__by {
+	font-size: 12px;
+	font-family: $font-family_2;
+	font-weight: 500;
+}
+.card__author {
+	font-weight: 600;
+	text-decoration: none;
+	color: $color_2;
+    margin-left: 10px;
+}
+}

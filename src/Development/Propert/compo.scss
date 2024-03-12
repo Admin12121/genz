@@ -1,0 +1,252 @@
+:root {
+    --bg-color: rgb(20, 20, 20);
+    --card-color: rgb(23, 23, 23);
+  }
+  .props_wrapper_development{
+    width: 100%;
+    height: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imp-image{
+  width: 60%;
+}
+  #compo_cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;  
+    // width: 100%;
+    // padding: 100px 0 0 0;
+     max-width: 916px;
+     width: calc(100% - 20px);
+  }
+
+  
+  
+  #compo_cards:hover > .exp_card::after {
+    opacity: 1;
+  }
+  
+  .exp_card{
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    height: 260px;
+    flex-direction: column;
+    position: relative;
+    width: 300px;  
+  }
+  
+  .exp_card:hover::before {
+    opacity: 1;
+  }
+  
+  .exp_card::before,
+  .exp_card::after {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 500ms;
+    width: 100%;
+  }
+  
+  .exp_card::before {
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(255, 255, 255, 0.06),
+      transparent 40%
+    );
+    z-index: 3;
+  }
+  
+  .exp_card::after {  
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(255, 255, 255, 0.4),
+      transparent 40%
+    );
+    z-index: 1;
+  }
+  
+  .exp_card> .exp-card-content {
+    background-color: #151417;
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    inset: 1px;
+    padding: 10px;
+    position: absolute;
+    z-index: 2;
+  }
+  
+  /* -- ↓ ↓ ↓ extra card content styles ↓ ↓ ↓ -- */
+  
+  #compo_cards {
+    
+    h1, h2, h3, h4, span {
+    color: rgb(240, 240, 240);
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    margin: 0px;
+  }
+}
+  i {  
+    color: rgb(240, 240, 240);
+  }
+  
+  .card-image {
+    align-items: center;
+    display: flex;
+    height: 140px;
+    justify-content: center;
+    // overflow: hidden;
+  }
+  
+  .card-image > i {
+    font-size: 6em;
+    opacity: 0.25;
+  }
+  
+  .exp-exp-card-info-wrapper {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    padding: 0px 20px;
+  }
+  
+  .exp-card-info {
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .exp-card-info > i {  
+    font-size: 1em;
+    height: 20px;
+    line-height: 20px;
+  }
+  
+  .exp-card-info-title > h3 {
+    font-size: 1.1em;
+    line-height: 20px;
+  }
+  
+  .exp-card-info-title > h4 {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85em;
+    margin-top: 8px;
+  }
+  
+  /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
+  
+  @media(max-width: 1000px) {
+    body {
+      align-items: flex-start;  
+      overflow: auto;
+    }
+    
+    #compo_cards {    
+      max-width: 1000px;
+      padding: 10px 0px;
+    }
+    
+    .exp_card{
+      flex-shrink: 1;
+      width: calc(50% - 4px);
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .exp_card{
+      height: 180px;
+    }
+    
+    .card-image {
+      height: 80px;  
+    }
+    
+    .card-image > i {
+      font-size: 3em;
+    }
+      
+    .exp-exp-card-info-wrapper {
+      padding: 0px 10px;
+    }
+    
+    .exp-card-info > i { 
+      font-size: 0.8em; 
+    }
+    
+    .exp-card-info-title > h3 {
+      font-size: 0.9em;
+    }
+  
+    .exp-card-info-title > h4 {
+      font-size: 0.8em;
+      margin-top: 4px;
+    }
+  }
+  
+  @media(max-width: 320px) {
+    .exp_card{
+      width: 100%;
+    }
+  }
+  
+  /* -- ↓ ↓ ↓ YouTube link styles ↓ ↓ ↓ -- */
+  
+  #youtube-link {
+    bottom: 10px;
+  }
+  
+  #youtube-link > i {
+    color: rgb(239, 83, 80);
+  }
+  
+  #source-link {
+    bottom: 60px;
+  }
+  
+  #source-link > i {
+    color: rgb(94, 106, 210);
+  }
+  
+  .link {
+    align-items: center;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;  
+    display: inline-flex;
+    gap: 5px;
+    left: 10px;
+    padding: 10px 20px;
+    position: fixed;
+    text-decoration: none;
+    z-index: 100;
+  }
+  
+  .link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .link > i, .link > span {
+    height: 20px;
+    line-height: 20px;
+  }
+  
+  .link > span {
+    color: white;
+  }

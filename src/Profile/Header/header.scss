@@ -1,0 +1,183 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    width: 160px;
+    img{
+        z-index: 2;
+        height: 40px;
+    }
+    span {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        z-index: 1;
+        img{
+            height: 30px;
+        }
+
+    }
+}
+.Profile_Logout{
+
+        display: flex;
+        border: none;
+        color: #fff;
+        padding: 12px 22px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 10px;
+        background: #443091;
+    
+}
+
+.dayNight {
+    cursor: pointer;
+    scale: .7;
+  }
+  .dayNight input {
+    display: none;
+  }
+  .dayNight input + div {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    position: relative;
+    box-shadow: inset 16px -16px 0 0 #fff;
+    transform: scale(1) rotate(-2deg);
+    transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
+  }
+  .dayNight input + div:before {
+    content: "";
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: background 0.3s ease;
+  }
+  .dayNight input + div:after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin: -3px 0 0 -5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: 0 -23px 0 #443091, 0 23px 0 #443091, 23px 0 0 #443091, -23px 0 0 #443091, 15px 15px 0 #443091, -15px 15px 0 #443091, 15px -15px 0 #443091, -15px -15px 0 #443091;
+    transform: scale(0);
+    transition: all 0.3s ease;
+  }
+  .dayNight input:checked + div {
+    box-shadow: inset 32px -32px 0 0 #fff;
+    transform: scale(0.5) rotate(0deg);
+    transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
+  }
+  .dayNight input:checked + div:before {
+    background: #443091;
+    transition: background 0.3s ease 0.1s;
+  }
+  .dayNight input:checked + div:after {
+    transform: scale(1.5);
+    transition: transform 0.5s ease 0.15s;
+  }
+  
+.dropdown-menu{
+  --primary-bg: #242526;
+  --secondary-bg: #fff;
+  --primary-text-color: #555;
+  --secondary-text-color: #cecece;
+  --border-radius: 8px;
+  --speed: 500ms;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  // background-color: var(--app-container);
+  background: var(--menu);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: var(--main-color);
+  border-radius: 14px;
+  padding: 5px;
+  width: 250px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-menu.active{
+  opacity: 1;
+  z-index: 999;
+  visibility: visible;
+  transform: translateY(0);
+  transition: var(--speed) ease;
+}
+
+.dropdown-menu.inactive{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: var(--speed) ease;
+}
+
+
+h3{
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--main-color);
+  line-height: 1.2rem;
+}
+
+h3 span{
+  font-size: 14px;
+  color: var(--secondary-text-color);
+  font-weight: 400;
+}
+
+.dropdown-menu span a{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--main-color);
+  padding: 8px  15px;
+  // border-top: 1px solid rgba(255, 255, 255, 0.3);
+  &:hover {
+    // background: #181818;
+    border-radius: 9px;
+    background: var(--app-container);
+}
+}
+
+.dropdown-menu span a:hover p{
+  cursor: pointer;
+}
+
+.dropdown-menu span a:hover img{
+  opacity: 1;
+  cursor: pointer;
+}
+
+
+.dropdownItem span{
+  max-width: 20px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  opacity: 0.5;
+  font-size: 20px;
+  transition: var(--speed);
+}
+
+.dropdownItem a p{
+  max-width: 100px;
+  margin-left: 10px;
+  transition: var(--speed);
+}

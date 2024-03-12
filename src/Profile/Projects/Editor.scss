@@ -1,0 +1,300 @@
+.editori{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    @media screen and (max-width: 1220px){
+        gap: 60px;
+    }
+
+    .forwebdev{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .forwebdevv{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        width: 100%;
+        height: 50%;
+        
+    }
+    // .code_editor_css,.code_editor_js{
+    //     @media screen and (max-width: 1100px){
+    //         display: none;
+    //     }
+    // }
+    .code_editor{
+    .edit_me{
+        transition: .5s ease;
+    }
+    .code_header{
+        display: flex;
+        padding: 5px 20px 5px 20px ;
+        width: 100%;
+        background: #1e1e1e;
+        border-radius:10px 10px 0 0;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+        color: #fff;
+        span{
+            display: flex;
+            gap: 10px;
+            cursor: pointer;
+            span:nth-child(2),span:nth-child(3){
+                display: none;
+                @media screen and (max-width: 1100px){
+                    display: block;
+                }
+            }
+        }
+        .grid_butt{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            .rot_gridi{
+                rotate: 180deg;
+            }
+            .rot_gridii{
+                rotate: -90deg;
+            }
+            .pro_save{
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+                span{
+                    display: flex;
+                    align-items: center;
+                    font-size: 16px;
+                }
+            }
+            .pro_sett{
+                font-size: 25px;
+            }
+        }
+        button{
+            background: transparent;
+            color: #fff;
+            border:none;
+            outline: none;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            span{
+                font-size: 10px;
+            }
+        }
+    }
+    .code_footer{
+        display: flex;
+        padding: 5px 20px 0 0 ;
+        width: 100%;
+        background: #1e1e1e;
+        border-radius: 0 0 10px 10px;
+        align-items: center;
+        justify-content: end;
+        overflow: hidden;
+        height: 20px;
+        button{
+            background: transparent;
+            color: #fff;
+            border:none;
+            outline: none;
+            font-size: 12px;
+            display: flex;
+            gap: 5px;
+            span{
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+.pre_view{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    @media screen and (max-width: 1220px){
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    .pre_but{
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        opacity: 0;
+        transition: .5s ease;
+        z-index: 999;
+    }
+    &:hover{
+        .pre_but{
+            opacity: 1;
+        }
+    }
+    iframe{
+            border-radius: 16px;
+            width: 100%;
+            height: 95%;
+            transition: .5s ease;
+            border: none;
+            outline: none;
+            background: #fff;
+            @media screen and (max-width: 720px){
+                height: 200% !important;
+                transform: scale(0.5);
+                transform-origin: top left;
+                width: 200%;
+                border-radius: 16px 16px 35px 35px ;
+            }
+        }
+    }
+}
+.editor{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    gap: 30px;
+    .forwebdev{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 60%;
+        height: 100%;
+    }
+    .forwebdevv{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        width: 60%;
+        height: 100%;
+        
+    }
+    
+    .code_editor{
+
+    .edit_me{
+        transition: .5s ease;
+    }
+    .code_header{
+        display: flex;
+        padding: 5px 20px 5px 20px ;
+        width: 100%;
+        background: #1e1e1e;
+        border-radius:10px 10px 0 0;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+        color: #fff;
+        .grid_butt{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            .rot_gridi{
+                rotate: 180deg;
+            }
+            .rot_gridii{
+                rotate: -90deg;
+            }
+            .pro_save{
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+                span{
+                    display: flex;
+                    align-items: center;
+                    font-size: 16px;
+                }
+            }
+            .pro_sett{
+                font-size: 18px;
+            }
+        }
+        button{
+            background: transparent;
+            color: #fff;
+            border:none;
+            outline: none;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            span{
+                font-size: 10px;
+            }
+        }
+    }
+    .code_footer{
+        display: flex;
+        padding: 5px 20px 0 0 ;
+        width: 100%;
+        background: #1e1e1e;
+        border-radius: 0 0 10px 10px;
+        align-items: center;
+        justify-content: end;
+        overflow: hidden;
+        height: 20px;
+        button{
+            background: transparent;
+            color: #fff;
+            border:none;
+            outline: none;
+            font-size: 12px;
+            display: flex;
+            gap: 5px;
+            span{
+                font-size: 17px;
+            }
+        }
+    }
+    }
+
+
+    .pre_view{
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        @media screen and (max-width: 1220px){
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+    
+        .pre_but{
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: 0;
+            transition: .5s ease;
+            z-index: 999;
+        }
+        &:hover{
+            .pre_but{
+                opacity: 1;
+            }
+        }
+        iframe{
+              position: absolute;
+              top: 0;
+              left: 0;
+              border-radius: 16px;
+              width: 100%;
+              height: 95%;
+              border: none;
+              transition: .5s ease;
+              outline: none;
+              background: #fff;
+
+            }
+        }
+}
