@@ -64,7 +64,7 @@ const Dash_Profile = ({ api }) => {
           name: name,
           email: email,
           profile: userinfo?.profile
-            ? `http://127.0.0.1:8000${userinfo.profile}`
+            ? `https://project.vickytajpuriya.com/${userinfo.profile}`
             : "/media/profile/default.jpg",
           facebook: userinfo?.facebook || "",
           instagram: userinfo?.instagram || "",

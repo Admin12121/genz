@@ -180,28 +180,6 @@ export const userAuthapi = createApi({
 export const { useUpdateUserInfoMutation, useRegisterUserMutation, useLoginUserMutation, useActiveCourseMutation ,useGetLoggedUserQuery ,useProjectsMutation ,useUpdateprojectsMutation ,useDeleteprojectsMutation , useCourseMutation , useChangeUserPasswordMutation, useSendPasswordResetEmailMutation, useResetPasswordMutation, useRegistrationMutation ,useRefreshAccessTokenMutation } = userAuthapi;
 
 
-export const sipalayaApi = createApi({
-  reducerPath: 'userAuthapi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/sipalaya/' }),
-  endpoints:(builder) => ({
-    contact : builder.mutation({
-      query:(user)=>{
-        return{
-          url :'contact/',
-          method: 'POST',
-          body: user,
-          headers:{
-            'Content-type' : 'application/json',
-          }
-        }
-      }
-    }),
-  }),
-})
-
-  export const {useContactMutation} = sipalayaApi
-
-
 export const PaymentApi = createApi({
   reducerPath: 'userAuthapi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api/payment' }),

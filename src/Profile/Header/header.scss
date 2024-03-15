@@ -181,3 +181,31 @@ h3 span{
   margin-left: 10px;
   transition: var(--speed);
 }
+
+.profile_img{
+  background: #656871;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.profile_img::before{
+  position: absolute;
+  content: "";
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, #656871 20%, #888b94 40%, #656871 80%, #656871 100%);
+  background-size: 450px 400px;
+  animation: shimmer 1s linear infinite;
+}
+.profile_img::before{
+  background-size: 650px 600px;
+}
+@keyframes shimmer {
+  0%{
+    background-position: -450px 0;
+  }
+  100%{
+    background-position: 450px 0;
+  }
+}
