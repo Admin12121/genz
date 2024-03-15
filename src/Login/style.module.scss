@@ -1,0 +1,217 @@
+.login{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f6fd;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 30px;
+    width: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  .icon_logo {
+    height: 80px;
+    width: 100%;
+  }
+  .icon_logo  img{
+    height: 100%;
+    width: 100%;
+  }
+
+  ::placeholder {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .form button {
+    align-self: flex-end;
+  }
+  
+  .flex_columnlabel {
+    color: #151717;
+    font-weight: 600;
+  }
+  
+  .inputForm {
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .input {
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 91.5%;
+    height: 85%;
+    padding: 0 0 0 10px;
+  }
+  
+  .input:focus {
+    outline: none;
+  }
+  
+  .inputForm:focus-within {
+    border: 1.5px solid #2d79f3;
+  }
+  
+  .flex_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  
+  .flex_rowlabel {
+    font-size: 14px;
+    color: black;
+    font-weight: 400;
+  }
+  
+  .span {
+    font-size: 14px;
+    margin-left: 5px;
+    color: #2d79f3;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .button_submit {
+    margin: 20px 0 10px 0;
+    background-color: #151717;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .p {
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    margin: 5px 0;
+    height: 15px;
+  }
+  .line{
+    color: orangered;
+  }
+  .btn {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    gap: 10px;
+    border: 1px solid #ededef;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  .displayflex{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .btn:hover {
+    border: 1px solid #2d79f3;
+    ;
+  }
+  
+  .clear {
+    clear: both;
+  }
+  
+  .checkBox {
+    display: block;
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+    border: .5px solid rgba(255, 255, 255, 0);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.675);
+  }
+  
+  .checkBox div {
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    top: -52px;
+    left: -52px;
+    position: absolute;
+    transform: rotateZ(45deg);
+    z-index: 100;
+  }
+  
+  .checkBox input[type=checkbox]:checked + div {
+    left: -10px;
+    top: -10px;
+  }
+  
+  .checkBox input[type=checkbox] {
+    position: absolute;
+    left: 50px;
+    visibility: hidden;
+  }
+  
+  .transition {
+    transition: 300ms ease;
+  }
+  .svg_loader{
+      width: 2.25em;
+      transform-origin: center;
+      animation: rotate4 2s linear infinite;
+     
+     .svgcircle {
+      fill: none;
+      stroke: hsl(214, 97%, 59%);
+      stroke-width: 2;
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      animation: dash4 1.5s ease-in-out infinite;
+     }
+     
+     @keyframes rotate4 {
+      100% {
+       transform: rotate(360deg);
+      }
+     }
+     
+     @keyframes dash4 {
+      0% {
+       stroke-dasharray: 1, 200;
+       stroke-dashoffset: 0;
+      }
+     
+      50% {
+       stroke-dasharray: 90, 200;
+       stroke-dashoffset: -35px;
+      }
+     
+      100% {
+       stroke-dashoffset: -125px;
+      }
+     }
+     
+  }

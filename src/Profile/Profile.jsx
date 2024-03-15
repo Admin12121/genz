@@ -19,35 +19,45 @@ const Profile = () => {
 
   const card = useRef()
   const contextMenu = useRef();
+  const [contextMenuVisible, setContextMenuVisible] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const handleRigthClick = (e) => {
-      e.preventDefault()
-      if(card.current.contains(e.target)) {
-        contextMenu.current.classList.remove("hidden");
-        contextMenu.current.style.left = `${e.clientX}px`;
-        contextMenu.current.style.top = `${e.clientY}px`;
+    
+    const handleRightClick = (e) => {
+      e.preventDefault();
 
+      if (card.current.contains(e.target)) {
+        setContextMenuVisible(true);
+        
+        const contextMenuWidth = 257; // Adjust this value based on your design
+        const contextMenuHeight = 250; // Adjust this value based on your design
+        
+        const cardRect = card.current.getBoundingClientRect();
+        const leftPosition = Math.min(e.clientX, cardRect.right - contextMenuWidth);
+        const topPosition = Math.min(e.clientY, cardRect.bottom - contextMenuHeight);
+        
+        contextMenu.current.style.left = `${leftPosition}px`;
+        contextMenu.current.style.top = `${topPosition}px`;
       } else {
-        contextMenu.current.classList.add("hidden")
+        setContextMenuVisible(false);
       }
-    }
-    window.addEventListener("contextmenu", handleRigthClick)
+    };
     
     const handleCloseContextMenu = (e) => {
-      if(!contextMenu.current.contains(e.target)) {
-        contextMenu.current.classList.add("hidden")
+      if (!contextMenu.current.contains(e.target)) {
+        setContextMenuVisible(false);
       }
-    }
-    window.addEventListener("click", handleCloseContextMenu)
-
+    };
+    
+    window.addEventListener("contextmenu", handleRightClick);
+    window.addEventListener("click", handleCloseContextMenu);
+    
     return () => {
-      window.removeEventListener("contextmenu", handleRigthClick)
-      window.removeEventListener("click", handleCloseContextMenu)
-    }
-  })
-
+      window.removeEventListener("contextmenu", handleRightClick);
+      window.removeEventListener("click", handleCloseContextMenu);
+    };
+  }, []);
 
   // const refreshToken = useSelector((state) => state.auth.refresh_token);
   const updateToken = async () => {
@@ -175,9 +185,9 @@ const Profile = () => {
         <div className="app-content">
           <Sidebar />
           <Outlet />
-          <div className={`Cont_menu_wrap hidden`} ref={contextMenu}>
-          <ContextMenu/>
-          </div>
+        <div className={`context_menu_wrap ${contextMenuVisible ? '' : 'hidden'}`} ref={contextMenu}>
+          <ContextMenu />
+        </div>
         </div>
       </section>
     </>

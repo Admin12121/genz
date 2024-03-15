@@ -1,7 +1,9 @@
-import { Grid, TextField, Button, Box, Alert, Typography } from "@mui/material";
 import React, {useState} from 'react'
+import { Link } from "react-router-dom";
 import { useSendPasswordResetEmailMutation } from "../../Fetch_Api/Service/User_Auth_Api";
 import './Rest.scss'
+import style from "../style.module.scss"
+import { blue } from '@mui/material/colors';
 const ResetPass = () => {
     const [server_error, setServerError] = useState({})
     const [server_msg, setServerMsg] = useState({})
@@ -40,23 +42,42 @@ const ResetPass = () => {
         <span className="b">Restore access to your account</span>
         </div>
     </div>
-    <button><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fillRule="evenodd" clipRule="evenodd" d="M18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289Z" fill="white" fillOpacity="0.7"/>
-<path fillRule="evenodd" clipRule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="white" fillOpacity="0.7"/>
+    <Link to='/login'>
+    <svg width="24px"  height="24px"  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Iconly/Light/Arrow---Left" stroke="#000000"  stroke-width="1.5"  fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Arrow---Left" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) translate(5.500000, 4.000000)" stroke="#000000"  stroke-width="1.5" >
+            <line x1="6.7743" y1="15.75" x2="6.7743" y2="0.75" id="Stroke-1"></line>
+            <polyline id="Stroke-3" points="12.7987 9.7002 6.7747 15.7502 0.7497 9.7002"></polyline>
+        </g>
+    </g>
 </svg>
-    </button>
+    </Link>
   </div>
   <form className="restbody" id='password-reset-email-form' onSubmit={handleSubmit}>
     <div className="restinput">
       <label>We will send a recovery email to</label>
-      <input name='gmail' placeholder="Your E-Mail address"/>
-      {server_error.email ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.email[0]}</Typography> : ""}
+      <div className={style.inputForm} style={{border: `${ server_error.non_field_errors || server_error.email ?  "1px solid red": server_msg.msg ? "1px solid green" :""}`}}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          viewBox="0 0 32 32"
+          height="20"
+        >
+          <g data-name="Layer 3" id="Layer_3">
+            <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
+          </g>
+        </svg>
+        <input placeholder="Enter your Email" className={style.input} type="text" name='gmail' required/>
+      </div>
     </div>
     <div className="action">
-      <button type="submit">Reset Password</button><a href="#">I don’t have access to my  E-Mail</a>
+      <button type="submit">Reset Password</button><a href="#">I don’t have access to my  <span style={{color:"blue"}}>E-Mail</span></a>
     </div>
-    {server_error.non_field_errors ? <Alert severity='error'>{server_error.non_field_errors[0]}</Alert> : ''}
-          {server_msg.msg ? <Alert severity='success'>{server_msg.msg}</Alert> : ''}
+    <p className="server_message" style={{color:`${server_error.non_field_errors || server_error.email ? "red": "green"}`}}>
+      {server_error.non_field_errors  && <p>{server_error.non_field_errors[0]}</p>}
+      {server_msg.msg && <p>{server_msg.msg}</p>}
+      {server_error.email && <p>{server_error.email}</p>}
+    </p>
   </form>
 </div>
     </section>

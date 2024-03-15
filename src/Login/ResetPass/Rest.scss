@@ -1,10 +1,10 @@
-$color_1: white;
-$color_2: rgba(255, 255, 255, 0.5);
-$color_3: #5D21D2;
-$color_4: #EEE9F8;
+$color_1: rgb(0, 0, 0);
+$color_2: rgba(0, 0, 0, 0.5);
+$color_3: #000000;
+$color_4: #000000;
 $font-family_1: "Inter", sans-serif;
 $font-family_2: inherit;
-$background-color_1: #5D21D2;
+$background-color_1: #ffffff;
 $background-color_2: transparent;
 
 @import "https://rsms.me/inter/inter.css";
@@ -23,6 +23,7 @@ html {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: #f3f6fd;
 }
 input {
 	font-family: $font-family_2;
@@ -34,7 +35,7 @@ button {
 	width: 540px;
 	background-color: $background-color_1;
 	border-radius: 12px;
-	box-shadow: 0 4px 8px rgba(93, 33, 210, 0.15);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 .restheader {
 	padding: 36px;
@@ -42,7 +43,10 @@ button {
 	align-items: flex-start;
 	justify-content: space-between;
 	color: $color_1;
-	border-bottom: 2px solid #724CD1;
+	border-bottom: 2px solid #ffffff;
+	@media (max-width:450px) {
+		padding: 15px;
+	}
 	.restleft {
 		display: flex;
 		align-items: center;
@@ -59,12 +63,20 @@ button {
 				font-size: 18px;
 				color: $color_2;
 			}
+			@media (max-width:450px) {
+				.h{
+					font-size: 20px!important;
+				}
+				.b{
+					font-size: 15px!important;
+				}
+			}
 		}
 	}
 	.icon_backdrop {
 		width: 64px;
 		height: 64px;
-		background: #724CD1;
+		background: #000000;
 		border-radius: 24px;
 		display: flex;
 		align-items: center;
@@ -83,30 +95,16 @@ button {
 .restbody {
 	padding: 24px;
 	align-items: normal;
+	height: 275px;
 	.restinput {
 		display: flex;
 		flex-direction: column;
+		gap: 15px;
 		label {
 			font-size: 18px;
 			color: $color_2;
-		}
-		input {
-			background: #40158F;
-			border-radius: 8px;
-			border: 1px solid #40158F;
-			padding: 15px 12px;
-			font-size: 18px;
-			margin-top: 8px;
-			outline: none;
-			color: $color_1;
-			&::-moz-placeholder {
-				color: $color_2;
-			}
-			&:-ms-input-placeholder {
-				color: $color_2;
-			}
-			&::placeholder {
-				color: $color_2;
+			@media (max-width:450px) {
+				font-size: 15px;
 			}
 		}
 	}
@@ -116,14 +114,17 @@ button {
 		justify-content: center;
 		button {
 			margin-top: 24px;
-			background: #FFFFFF;
+			background: #000000;
 			border-radius: 8px;
 			padding: 15px;
 			font-size: 18px;
-			color: $color_3;
+			color: #fff;
 			cursor: pointer;
 			border: none;
 			outline: none;
+			@media (max-width:450px) {
+				font-size: 15px;
+			}
 		}
 		a {
 			margin-top: 20px;
@@ -131,6 +132,18 @@ button {
 			color: $color_4;
 			text-decoration: none;
 			text-align: center;
+			@media (max-width:450px) {
+				font-size: 13px;
+			}
+		}
+	}
+	.server_message{
+		width: 100%;
+		justify-content: center;
+		text-align: center;
+		margin: 10px 0;
+		@media (max-width:450px) {
+			font-size: 13px;
 		}
 	}
 }

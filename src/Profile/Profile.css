@@ -964,3 +964,7 @@ input::placeholder {
   position: absolute;
   width: fit-content;
 }
+.context_menu_wrap {
+  position: absolute;
+  width: fit-content;
+}
