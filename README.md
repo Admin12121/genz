@@ -1,8 +1,40 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#  Learner
 
-Currently, two official plugins are available:
+  Introducing my innovative project tailored for beginners entering the coding world. Our platform serves
+as a comprehensive hub, housing a wealth of notes, information, documents, and a virtual environment dedicated to
+coding—all conveniently consolidated in one place. We go beyond the conventional enhancing the learning experience
+for novices. This project streamlines the learning process, thereby making the journey into coding more efficient and
+enjoyable.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Screenshots
+
+![App Screenshot](https://vickytajpuriya.com/projects.jpeg)
+
+![App Screenshot](https://vickytajpuriya.com/IDm.jpeg)
+
+![App Screenshot](https://vickytajpuriya.com/cards.jpeg)
+
+![App Screenshot](https://vickytajpuriya.com/tutorial.jpeg)
+
+
+  This project is built using Django for the backend and React for the frontend as the main Tech and Vite for package management in the frontend React application.
+## Installation
+
+
+```bash
+ git clone https://github.com/Admin12121/Elearning_frontend.git
+```
+
+```bash
+ npm install
+```
+
+```bash
+ npm run dev
+```
+
+## Demo
+Currently Unavailable
+
