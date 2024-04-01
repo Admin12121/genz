@@ -1,4 +1,3 @@
-import { Grid, TextField, Button, Box, Alert, Typography } from "@mui/material";
 import { useState } from 'react';
 import style from "../style.module.scss"
 import { useNavigate, useParams } from 'react-router-dom';
@@ -36,7 +35,7 @@ const PassChange = () => {
     <section id="restsection">
     <div className="restcard">
   <div className="restheader">
-    <div className="restleft"><span className="icon_backdrop"><svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 23.8V28H2.88889C1.2934 28 0 26.7464 0 25.2V14c0-1.5464 1.2934-2.8 2.88889-2.8H13v4.2c-1.5955 0-2.8889 1.2536-2.8889 2.8 0 1.0364.581 1.9413 1.4445 2.4254V22.4c0 .7732.6467 1.4 1.4444 1.4z" fill="#fff"/><path d="M18.7778 8.4c.7977 0 1.4444-.6268 1.4444-1.4 0-3.86599-3.2335-7-7.2222-7-3.98872 0-7.22222 3.13401-7.22222 7v4.2h2.88889V7c0-2.3196 1.94013-4.2 4.33333-4.2s4.3333 1.8804 4.3333 4.2c0 .7732.6467 1.4 1.4445 1.4zM23.1111 11.2H13v4.2c1.5955 0 2.8889 1.2536 2.8889 2.8 0 1.0364-.581 1.9413-1.4445 2.4254V22.4c0 .7732-.6467 1.4-1.4444 1.4V28h10.1111C24.7066 28 26 26.7464 26 25.2V14c0-1.5464-1.2934-2.8-2.8889-2.8z" fill="#fff"/></svg></span>
+    <div className="restleft"><span className="icon_backdrop"><svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M13 23.8V28H2.88889C1.2934 28 0 26.7464 0 25.2V14c0-1.5464 1.2934-2.8 2.88889-2.8H13v4.2c-1.5955 0-2.8889 1.2536-2.8889 2.8 0 1.0364.581 1.9413 1.4445 2.4254V22.4c0 .7732.6467 1.4 1.4444 1.4z" fill="#fff"/><path d="M18.7778 8.4c.7977 0 1.4444-.6268 1.4444-1.4 0-3.86599-3.2335-7-7.2222-7-3.98872 0-7.22222 3.13401-7.22222 7v4.2h2.88889V7c0-2.3196 1.94013-4.2 4.33333-4.2s4.3333 1.8804 4.3333 4.2c0 .7732.6467 1.4 1.4445 1.4zM23.1111 11.2H13v4.2c1.5955 0 2.8889 1.2536 2.8889 2.8 0 1.0364-.581 1.9413-1.4445 2.4254V22.4c0 .7732-.6467 1.4-1.4444 1.4V28h10.1111C24.7066 28 26 26.7464 26 25.2V14c0-1.5464-1.2934-2.8-2.8889-2.8z" fill="#fff"/></svg></span>
       <div className="resttext">
         <span className="h">Change Password</span>
         <span className="b">Restore access to your account</span>

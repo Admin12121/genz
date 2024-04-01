@@ -15,7 +15,7 @@ const Sidebar = () => {
   return (
     <div className="app-sidebar">
       <motion.span transition={{type:"spring" , stiffness:"200"}} whileHover={{scale:1.3}} whileTap={{scale:0.83}}>
-      <Link to='' onClick={()=> handleLinkClick("")} className={`app-sidebar-link ${activeLink === '' ? 'active' : ''}`}>
+      <Link to='/code' onClick={()=> handleLinkClick("")} className={`app-sidebar-link ${activeLink === '' ? 'active' : ''}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -34,7 +34,7 @@ const Sidebar = () => {
       </Link>
       </motion.span>
       <motion.span transition={{type:"spring" , stiffness:"200"}} whileHover={{scale:1.3}} whileTap={{scale:0.83}}>
-      <Link to="courseses" onClick={()=> handleLinkClick("courseses")} className={`app-sidebar-link ${activeLink === 'courseses' ? 'active' : ''}`}>
+      <Link to="courses" onClick={()=> handleLinkClick("courseses")} className={`app-sidebar-link ${activeLink === 'courseses' ? 'active' : ''}`}>
         <svg
           className="link-icon feather feather-pie-chart"
           xmlns="http://www.w3.org/2000/svg"

@@ -2,6 +2,7 @@
 display: flex;
 align-items: start;
 width: 100%;
+flex-direction: column;
 height: 100%;
 padding: 0;
 overflow: auto;
@@ -19,9 +20,6 @@ overflow: auto;
         font-size: 50px;
     }
     
-    .profile_Image {
-        margin-top: 200PX;
-    }
     .profile_Image p{
         position: absolute;
         top: 0;
@@ -140,12 +138,12 @@ overflow: auto;
             margin-top: 30px;
             position: relative;
             padding: 15px 45px;
-            background: #443091;
+            background: mediumslateblue;
             font-size: 17px;
             font-weight: 500;
             color: #fff;
             cursor: pointer;
-            border: 1px solid #443091;
+            border: 1px solid mediumslateblue;
             border-radius: 8px;
             filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
             margin-bottom: 100px;

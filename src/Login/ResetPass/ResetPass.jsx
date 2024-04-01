@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSendPasswordResetEmailMutation } from "../../Fetch_Api/Service/User_Auth_Api";
 import './Rest.scss'
 import style from "../style.module.scss"
-import { blue } from '@mui/material/colors';
+
 const ResetPass = () => {
     const [server_error, setServerError] = useState({})
     const [server_msg, setServerMsg] = useState({})
@@ -43,9 +43,9 @@ const ResetPass = () => {
         </div>
     </div>
     <Link to='/login'>
-    <svg width="24px"  height="24px"  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Iconly/Light/Arrow---Left" stroke="#000000"  stroke-width="1.5"  fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Arrow---Left" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) translate(5.500000, 4.000000)" stroke="#000000"  stroke-width="1.5" >
+    <svg width="24px"  height="24px"  viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <g id="Iconly/Light/Arrow---Left" stroke="#000000"  strokeWidth="1.5"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
+        <g id="Arrow---Left" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) translate(5.500000, 4.000000)" stroke="#000000"  strokeWidth="1.5" >
             <line x1="6.7743" y1="15.75" x2="6.7743" y2="0.75" id="Stroke-1"></line>
             <polyline id="Stroke-3" points="12.7987 9.7002 6.7747 15.7502 0.7497 9.7002"></polyline>
         </g>

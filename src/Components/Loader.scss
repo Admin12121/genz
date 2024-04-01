@@ -1,24 +1,38 @@
-$base: #263238;
-$lite:  #FFF;
-$brand: #FF3D00;
-$size: 48px;
-
-.loader {
-    width : $size;
-    height: $size;
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    border: 2px solid $brand;
-    animation: rotation 1s linear infinite;
-    &:after {
-      content: '';
-      position: absolute;
-      left: 4px;
-      top: 4px;
-      border: 2px solid $lite;
-      width:  $size/4;
-      height:  $size/4;
-      border-radius: 50%;
-    }
+.svg_loader{
+  width: 2.25em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+ 
+ .svgcircle {
+  fill: none;
+  stroke: hsl(214, 97%, 59%);
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+ }
+ 
+ @keyframes rotate4 {
+  100% {
+   transform: rotate(360deg);
+  }
+ }
+ 
+ @keyframes dash4 {
+  0% {
+   stroke-dasharray: 1, 200;
+   stroke-dashoffset: 0;
+  }
+ 
+  50% {
+   stroke-dasharray: 90, 200;
+   stroke-dashoffset: -35px;
+  }
+ 
+  100% {
+   stroke-dashoffset: -125px;
+  }
+ }
+ 
 }

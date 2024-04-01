@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const userAuthapi = createApi({
   reducerPath: 'userAuthapi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://project.vickytajpuriya.com/user/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/user/' }),
   endpoints:(builder) => ({
     registerUser : builder.mutation({
       query:(user)=>{
@@ -34,6 +34,17 @@ export const userAuthapi = createApi({
       query: (access_token) => {
         return {
           url: 'profile/',
+          method: 'GET',
+          headers: {
+            'authorization': `Bearer ${access_token}`,
+          }
+        }
+      }
+    }),
+    getUserProfile: builder.query({
+      query: ({access_token, username}) => {
+        return {
+          url: `users/?name=${username}`,
           method: 'GET',
           headers: {
             'authorization': `Bearer ${access_token}`,
@@ -77,53 +88,72 @@ export const userAuthapi = createApi({
         }
       }
     }),
-    projects: builder.mutation({
-      query: ( actualData ) => {
+    projectdata: builder.query({
+      query: ({username,access_token,project_title}) => {
         return {
-          url: 'project/',
+          url: `projects/?name=${username}&project_title=${project_title}`,
+          method:'GET',
+          headers: {
+            'authorization': `Bearer ${access_token}`,
+          }
+        }
+      }
+    }),
+    project: builder.query({
+      query: ({access_token, page}) => {
+        return {
+          url: `${page ? `projects/?page=${page}`: "projects/" } `,
+          method:'GET',
+          headers: {
+            'authorization': `Bearer ${access_token}`,
+          }
+        }
+      }
+    }),
+    view: builder.query({
+      query: ({access_token,username}) => {
+        return {
+          url: `projects/?name=${username}`,
+          method:'GET',
+          headers: {
+            'authorization': `Bearer ${access_token}`,
+          }
+        }
+      }
+    }),
+    projects: builder.mutation({
+      query: ( {actualData, access_token} ) => {
+        return {
+          url: 'projects/',
           method:'POST',
           body: actualData,
           headers: {
-            'Content-type': 'application/json',
+            'authorization': `Bearer ${access_token}`,
           }
         }
       }
     }),
     updateprojects: builder.mutation({
-      query: ( actualData ) => {
-        const {id,...rest} = actualData
-        console.log(rest)
+      query: ({username,access_token,project_title,actualData,id }) => {
         console.log(actualData)
         return {
-          url: `project/${actualData.id}/`,
-          method:'PUT',
-          body: rest,
+          url: `projects/?name=${username}&project_title=${project_title}&id=${id}`,
+          method:'PATCH',
+          body: actualData,
           headers: {
-            'Content-type': 'application/json',
+            'authorization': `Bearer ${access_token}`,
           }
         }
       }
     }),
     deleteprojects: builder.mutation({
-      query: ( actualData ) => {
-        const {id,...rest} = actualData
-        return {
-          url: `project/${actualData.id}/`,
-          method:'DELETE',
-        }
-      }
-    }),
-    activeCourse: builder.mutation({
-      query: (actualData) => {
-        return {
-          url: 'activecourse/',
-          method: 'POST',
-          body: actualData,
-          headers: {
-            'Content-type': 'application/json',
-          }
-        }
-      }
+      query: ({ id, access_token, username }) => ({  //http://127.0.0.1:8000/user/projects/?name=Admin&id=3
+        url: `projects/?name=${username}&id=${id}`, // Assuming projectId is the ID of the project you want to delete
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${access_token}`,  // Sending the username for permission check on the server side
+        },
+      }),
     }),
     sendPasswordResetEmail: builder.mutation({
       query: (user) => {
@@ -161,7 +191,6 @@ export const userAuthapi = createApi({
         }
       }
     }),
-
     refreshAccessToken: builder.mutation({
       query: (refreshToken) => {
         return {
@@ -177,28 +206,47 @@ export const userAuthapi = createApi({
   }),
 })
 
-export const { useUpdateUserInfoMutation, useRegisterUserMutation, useLoginUserMutation, useActiveCourseMutation ,useGetLoggedUserQuery ,useProjectsMutation ,useUpdateprojectsMutation ,useDeleteprojectsMutation , useCourseMutation , useChangeUserPasswordMutation, useSendPasswordResetEmailMutation, useResetPasswordMutation, useRegistrationMutation ,useRefreshAccessTokenMutation } = userAuthapi;
+export const { useUpdateUserInfoMutation, useRegisterUserMutation, useLoginUserMutation ,useGetLoggedUserQuery , useGetUserProfileQuery , useProjectdataQuery , useProjectQuery , useViewQuery , useProjectsMutation ,useUpdateprojectsMutation ,useDeleteprojectsMutation , useCourseMutation , useChangeUserPasswordMutation, useSendPasswordResetEmailMutation, useResetPasswordMutation, useRegistrationMutation ,useRefreshAccessTokenMutation } = userAuthapi;
 
 
-export const PaymentApi = createApi({
+export const courseApi = createApi({
   reducerPath: 'userAuthapi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api/payment' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://project.vickytajpuriya.com/tutorials/' }),
   endpoints:(builder) => ({
-    payment : builder.mutation({
-      query:(user)=>{
-        return{
-          url :'payment/',
-          method: 'POST',
-          body: user,
-          headers:{
-            'Content-type' : 'application/json',
+    course: builder.query({
+      query: ({access_token,name,video_title}) => {
+        if (name)
+         { return {
+            url: `course/?name=${name}`,
+            method: 'GET',
+            headers: {
+              'authorization': `Bearer ${access_token}`,
+            }
           }
         }
-      }
+        else if(video_title){
+            return {
+              url: `coursedata/?video_title=${video_title}`,
+              method: 'GET',
+              headers: {
+                'authorization': `Bearer ${access_token}`,
+              }
+            }
+          }      
+        else{
+            return {
+              url: `course/`,
+              method: 'GET',
+              headers: {
+                'authorization': `Bearer ${access_token}`,
+              }
+            }
+          }      
+        }
+      
     }),
   }),
 })
 
-  export const {usePaymentMutation} = PaymentApi
-
+export const { useCourseQuery } = courseApi;
 

@@ -30,19 +30,8 @@ const storeToken = (value) => {
     let mode = localStorage.getItem('mode');
     return mode; // Return the value directly, not as an object
   };
-  const storeActive_Course = (value) =>{
-    if (value){
-      localStorage.setItem('courseinfo', value);
-    }
-    else{
-      localStorage.setItem('courseinfo', '');
-    }
-  }
-  const getCourse = () =>{
-    let courseinfo = localStorage.getItem('courseinfo')
-    return courseinfo ? courseinfo : "";
-  }
-  export { storeToken, getToken, removeToken, storeMode, getMode , storeActive_Course, getCourse}
+
+  export { storeToken, getToken, removeToken, storeMode, getMode}
 
 
 

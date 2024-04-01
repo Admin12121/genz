@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
   getToken,
-  storeActive_Course,
 } from "../../Fetch_Api//Service/LocalStorageServices";
 import {
   useGetLoggedUserQuery,
   useUpdateUserInfoMutation,
 } from "../../Fetch_Api/Service/User_Auth_Api";
-import {
-  setUserToken,
-  unSetUserToken,
-} from "../../Fetch_Api/Feature/authSlice";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { MdEdit } from "react-icons/md";
 import "./Setting.scss";
 
 const Settings = () => {
@@ -28,44 +21,6 @@ const Settings = () => {
     isSuccess: userSuccess,
     isError: userError,
   } = useGetLoggedUserQuery(access_token);
-
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    profile: "",
-    facebook: "",
-    instagram: "",
-    linkind: "",
-    bio: "",
-    address: "",
-  });
-
-  useEffect(() => {
-    if (userSuccess && userData) {
-      try {
-        // Destructure user data
-        const { id, email, name, phone, userinfo, courseinfo } = userData;
-
-        // Update state with user data
-        setUserInfo({
-          name: name,
-          email: email,
-          phone: phone,
-          profile: userinfo?.profile
-            ? `http://127.0.0.1:8000${userinfo.profile}`
-            : "/media/profile/default.jpg",
-          facebook: userinfo?.facebook || "",
-          instagram: userinfo?.instagram || "",
-          linkind: userinfo?.linkind || "",
-          bio: userinfo?.bio || "This is the default bio.",
-          address: userinfo?.address || "",
-        });
-      } catch (error) {
-        console.error("Error processing user data:", error);
-      }
-    }
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,8 +37,9 @@ const Settings = () => {
     }
     if (res.data) {
       setServerError("Saved");
-    }
+    }'/media/profile/8083b594948189.5e8c4a7bc54b4.jpg'
   };
+
   return (
     <>
       <div
@@ -94,10 +50,19 @@ const Settings = () => {
         <div className="profile_Image">
           <p>Profile Picture</p>
           <div className="image_wrapper">
-          <img src={selectedFile ? URL.createObjectURL(selectedFile) : userInfo.profile} alt="" />
+         {userData && <img src={selectedFile ? URL.createObjectURL(selectedFile) : `https://project.vickytajpuriya.com${userData.userinfo.profile}`} alt="" />}
             <span>
               <input type="file" name="" id="" onChange={(e) => setSelectedFile(e.target.files[0])}/>
-              <MdEdit />
+              <svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                  <g id="Iconly/Light/Filter" stroke="#000000"  strokeWidth="1.5"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
+                      <g id="Filter" transform="translate(4.000000, 4.500000)" stroke="var(--main-color)"  strokeWidth="1.5" >
+                          <line x1="6.33015655" y1="12.0929063" x2="0.0294393477" y2="12.0929063" id="Stroke-1"></line>
+                          <line x1="9.14048198" y1="2.40037662" x2="15.4411992" y2="2.40037662" id="Stroke-3"></line>
+                          <path d="M4.72628792,2.34625359 C4.72628792,1.05059752 3.66812728,1.79725516e-14 2.36314396,1.79725516e-14 C1.05816064,1.79725516e-14 1.25389895e-15,1.05059752 1.25389895e-15,2.34625359 C1.25389895e-15,3.64190965 1.05816064,4.69250717 2.36314396,4.69250717 C3.66812728,4.69250717 4.72628792,3.64190965 4.72628792,2.34625359 Z" id="Stroke-5"></path>
+                          <path d="M16,12.0537464 C16,10.7580903 14.942654,9.70749283 13.6376706,9.70749283 C12.3318727,9.70749283 11.2737121,10.7580903 11.2737121,12.0537464 C11.2737121,13.3494025 12.3318727,14.4 13.6376706,14.4 C14.942654,14.4 16,13.3494025 16,12.0537464 Z" id="Stroke-7"></path>
+                      </g>
+                  </g>
+              </svg>
               Edit
             </span>
           </div>
@@ -106,8 +71,8 @@ const Settings = () => {
           <div className="UserName">
             <input
               type="text"
-              placeholder={userInfo.name}
-              autocomplete="email"
+              placeholder={userData && userData.name}
+              autoComplete="email"
               aria-label="Email address"
               className="Nameuser"
             />
@@ -120,8 +85,8 @@ const Settings = () => {
                 >
                   <path
                     fill="currentColor"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M16 3 10 .5v2H0v1h10v2L16 3Z"
                   ></path>
                 </svg>
@@ -131,8 +96,8 @@ const Settings = () => {
           <div className="UserName">
             <input
               type="email"
-              placeholder={userInfo.email}
-              autocomplete="email"
+              placeholder={userData && userData.email}
+              autoComplete="email"
               aria-label="Email address"
               className="Nameuser"
             />
@@ -145,8 +110,8 @@ const Settings = () => {
                 >
                   <path
                     fill="currentColor"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M16 3 10 .5v2H0v1h10v2L16 3Z"
                   ></path>
                 </svg>
@@ -156,8 +121,8 @@ const Settings = () => {
           <div className="UserName">
             <input
               type="email"
-              placeholder={userInfo.phone}
-              autocomplete="email"
+              placeholder={userData && userData.portfolio ? userData.portfolio : "Portfolio"}
+              autoComplete="email"
               aria-label="Email address"
               className="Nameuser"
             />
@@ -170,8 +135,8 @@ const Settings = () => {
                 >
                   <path
                     fill="currentColor"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M16 3 10 .5v2H0v1h10v2L16 3Z"
                   ></path>
                 </svg>
@@ -180,9 +145,9 @@ const Settings = () => {
           </div>
           <div className="UserName">
             <input
-              type="email"
-              placeholder={userInfo.bio}
-              autocomplete="email"
+              type="text"
+              placeholder={userData && userData.bio ? userData.bio : "Bio" }
+              autoComplete="email"
               aria-label="Email address"
               className="Nameuser"
             />
@@ -195,8 +160,8 @@ const Settings = () => {
                 >
                   <path
                     fill="currentColor"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M16 3 10 .5v2H0v1h10v2L16 3Z"
                   ></path>
                 </svg>
@@ -205,9 +170,9 @@ const Settings = () => {
           </div>
           <div className="UserName">
             <input
-              type="email"
-              placeholder={userInfo.address ? userInfo.address : "Addresh"}
-              autocomplete="email"
+              type="text"
+              placeholder={userData && userData.address ? userData.address : "Addresh"}
+              autoComplete="email"
               aria-label="Email address"
               className="Nameuser"
             />
@@ -220,8 +185,8 @@ const Settings = () => {
                 >
                   <path
                     fill="currentColor"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M16 3 10 .5v2H0v1h10v2L16 3Z"
                   ></path>
                 </svg>
@@ -233,7 +198,7 @@ const Settings = () => {
             Save
             <div className="icon-1">
               <svg
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 26.3 65.33"
                 style={{
                   shapeRendering: "geometricPrecision",
@@ -243,7 +208,7 @@ const Settings = () => {
                   clipRule: "evenodd",
                 }}
                 version="1.1"
-                xml:space="preserve"
+                xmlSpace="preserve"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs></defs>
@@ -258,7 +223,7 @@ const Settings = () => {
             </div>
             <div className="icon-2">
               <svg
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 11.67 37.63"
                 style={{
                   shapeRendering: "geometricPrecision",
@@ -268,7 +233,7 @@ const Settings = () => {
                   clipRule: "evenodd",
                 }}
                 version="1.1"
-                xml:space="preserve"
+                xmlSpace="preserve"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs></defs>
@@ -283,7 +248,7 @@ const Settings = () => {
             </div>
             <div className="icon-3">
               <svg
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 25.29 76.92"
                 style={{
                   shapeRendering: "geometricPrecision",
@@ -293,7 +258,7 @@ const Settings = () => {
                   clipRule: "evenodd",
                 }}
                 version="1.1"
-                xml:space="preserve"
+                xmlSpace="preserve"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs></defs>
