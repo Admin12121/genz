@@ -38,15 +38,13 @@ const Sign = () => {
         <label  className={style.flex_columnlabel}>User Name </label>
       </div>
       <div className={style.inputForm} style={{border: `${ server_error.non_field_errors || server_error.name ? "1px solid Red" :""}`}}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          viewBox="0 0 32 32"
-          height="20"
-        >
-          <g data-name="Layer 3" id="Layer_3">
-            <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
-          </g>
+        <svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+            <g id="Iconly/Light/Profile" stroke="#000000"  strokeWidth="1"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
+                <g id="Profile" transform="translate(4.814286, 2.814476)" stroke="#000000" >
+                    <path d="M7.17047619,12.531714 C3.30285714,12.531714 -4.08562073e-14,13.1164759 -4.08562073e-14,15.4583807 C-4.08562073e-14,17.8002854 3.28190476,18.4059997 7.17047619,18.4059997 C11.0380952,18.4059997 14.34,17.8202854 14.34,15.479333 C14.34,13.1383807 11.0590476,12.531714 7.17047619,12.531714 Z" id="Stroke-1" strokeWidth="1.4" ></path>
+                    <path d="M7.17047634,9.19142857 C9.70857158,9.19142857 11.7657144,7.13333333 11.7657144,4.5952381 C11.7657144,2.05714286 9.70857158,-5.32907052e-15 7.17047634,-5.32907052e-15 C4.6323811,-5.32907052e-15 2.574259,2.05714286 2.574259,4.5952381 C2.56571443,7.1247619 4.60952396,9.18285714 7.13809539,9.19142857 L7.17047634,9.19142857 Z" id="Stroke-3" strokeWidth="1.4" ></path>
+                </g>
+            </g>
         </svg>
         <input placeholder="Enter User Name" className={style.input} type="text" name="name" required/>
       </div>
@@ -123,7 +121,7 @@ const Sign = () => {
           <label className={style.flex_rowlabel} >Terms and Conditions</label>
         </div>
       </div>
-      {<p className={`${style.p} ${style.line}`}>{server_error.non_field_errors || server_error.password || server_error.email }</p>}
+      {<p className={`${style.p} ${style.line}`}>{server_error.non_field_errors || server_error.password || server_error.email || server_error.name }</p>}
      {isLoading ? <button disabled style={{background:'#151717f2'}} className={style.button_submit}><svg className={style.svg_loader} viewBox="25 25 50 50"><circle className={style.svgcircle} r="20" cy="50" cx="50"></circle></svg></button> : <button className={style.button_submit}>Create Account</button>}
       <p className={style.p}>
         Already have an account? <Link to="/login" className={style.span}>Sign In</Link>

@@ -43,7 +43,7 @@
   --link-color-hover: rgba(195, 207, 244, 0.1);
   --link-color-active-bg: rgba(195, 207, 244, 0.2);
   --button-bg: #1f2937;
-  --search-area-bg: #606770;
+  --search-area-bg: #353434;
   --message-box-hover: #243244;
   --message-box-border: rgba(255, 255, 255, 0.1);
   --star: #ffd92c;
@@ -95,7 +95,7 @@ a {
   display: flex;
   height: 100%;
   overflow: hidden;
-  padding: 16px 24px 24px 0;
+  padding: 0px 24px 24px 0;
 }
 .app-header {
   display: flex;
@@ -291,7 +291,7 @@ input::placeholder {
 .project_course_section {
   flex: 2;
   background-color: var(--projects-section);
-  border-radius: 32px;
+  border-radius: 20px;
   padding: 32px 32px 0 32px;
   /* overflow: hidden; */
   overflow-y: scroll;
@@ -300,6 +300,19 @@ input::placeholder {
   flex-direction: row;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+@media screen and (max-width: 1230px) {
+  .project_course_section {
+    border-radius: 28px;
+  }
+}
+.project_course_section::-webkit-scrollbar{
+width: 0;
+display: none;
+}
+.projects-section::-webkit-scrollbar, .user_form::-webkit-scrollbar {
+  display: none;
+} 
+
 .projects-section {
   flex: 2;
   background-color: var(--projects-section);
@@ -514,7 +527,6 @@ input::placeholder {
 
 .project-boxes {
   margin: 0 -8px;
-  /* overflow-y: auto; */
 }
 .project-boxes.jsGridView {
   display: flex;
@@ -524,17 +536,7 @@ input::placeholder {
   gap: 34px;
   padding: 30px 10px;
 }
-/* .project-boxes.jsGridViews {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  padding: 30px 10px;
-} */
-.project-boxes.jsGridView .project-box-wrapper {
-  /* width: 33.3%; */
-}
+
 .project-boxes.jsListView .project-box {
   display: flex;
   border-radius: 10px;
@@ -624,20 +626,6 @@ input::placeholder {
   background-color: transparent;
   border: none;
   flex-shrink: 0;
-  /*&:after, &:before {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--main-color);
-    opacity: .8;
-    left: 50%;
-    transform: translatex(-50%);
-  }
-
-  &:before { top: 0;}
-  &:after { bottom: 0; }*/
 }
 
 .more-wrapper {
@@ -763,10 +751,6 @@ input::placeholder {
   }
 }
 @media screen and (max-width: 980px) {
-  .project-boxes.jsGridView .project-box-wrapper {
-    /* width: 50%; */
-  }
-
   .status-number,
   .status-type {
     font-size: 14px;
@@ -828,6 +812,8 @@ input::placeholder {
 @media screen and (max-width: 520px) {
   .projects-section {
     overflow: auto;
+    height: 85vh;
+    gap: 0!important;
   }
   .project-boxes.jsGridView {
     justify-content: center;
@@ -848,21 +834,18 @@ input::placeholder {
     display: flex;
     z-index: 99999;
     flex-direction: column;
-    /* background: var(--app-container); */
     background: var(--message-btn);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     align-items: center;
     flex-direction: row;
     gap: 20px;
-    /* stroke-linecap: butt; */
     bottom: 0;
     border-radius: 26px;
   }
 
   .app-content {
-    padding: 16px 12px 24px 12px;
-    align-items: center;
+    padding: 0px 12px 24px 12px;
     justify-content: center;
   }
 
@@ -884,12 +867,8 @@ input::placeholder {
     max-width: 120px;
   }
 
-  .project-boxes.jsGridView .project-box-wrapper {
-    /* width: 100%; */
-  }
-
   .projects-section {
-    padding: 24px 16px 0 16px;
+    padding: 24px 16px 40px 16px;
   }
 
   .profile-btn img {
@@ -960,11 +939,17 @@ input::placeholder {
 }
 
 .Cont_menu_wrap {
-  /* display: none; */
   position: absolute;
   width: fit-content;
 }
 .context_menu_wrap {
   position: absolute;
   width: fit-content;
+}
+
+.infinite-scroll-component {
+  justify-content: center;
+}
+.infinite-scroll-component {
+  overflow: unset!important;
 }

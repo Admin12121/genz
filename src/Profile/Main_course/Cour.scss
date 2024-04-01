@@ -7,7 +7,9 @@
         align-items: normal;
         justify-content: end;
     }
-
+    @media screen and (max-width: 520px){
+        height: 85vh;
+    }
 a {
     text-decoration: none;
     color: var(--main-color);
@@ -86,10 +88,9 @@ a {
 
         .Title_content {
             cursor: pointer;
-            height: 0;
+            height: 25px;
             display: flex;
             align-items: center;
-            justify-content: center;
             overflow: hidden;
 
             span {
@@ -124,14 +125,18 @@ a {
     color: var(--main-color);
     background-color: var(--app-container);
     border: 1px solid #eceff133;
-    border-radius: 25px;
+    border-radius: 16px;
     overflow-x: scroll;
     width: 95%;
 
     @media screen and (max-width: 1230px) {
         width: 100%;
+        padding: 5px;
+        border-radius: 24px;
     }
-
+    &::-webkit-scrollbar {
+        display: none;
+    }
     .Course_title_Wrapper {
         margin-top: 20px;
         display: flex;

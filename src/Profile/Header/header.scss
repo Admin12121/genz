@@ -29,7 +29,7 @@
         align-items: center;
         gap: 8px;
         border-radius: 10px;
-        background: #443091;
+        background: mediumslateblue;
     
 }
 
@@ -68,7 +68,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    box-shadow: 0 -23px 0 #443091, 0 23px 0 #443091, 23px 0 0 #443091, -23px 0 0 #443091, 15px 15px 0 #443091, -15px 15px 0 #443091, 15px -15px 0 #443091, -15px -15px 0 #443091;
+    box-shadow: 0 -23px 0 mediumslateblue, 0 23px 0 mediumslateblue, 23px 0 0 mediumslateblue, -23px 0 0 mediumslateblue, 15px 15px 0 mediumslateblue, -15px 15px 0 mediumslateblue, 15px -15px 0 mediumslateblue, -15px -15px 0 mediumslateblue;
     transform: scale(0);
     transition: all 0.3s ease;
   }
@@ -78,7 +78,7 @@
     transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
   }
   .dayNight input:checked + div:before {
-    background: #443091;
+    background: mediumslateblue;
     transition: background 0.3s ease 0.1s;
   }
   .dayNight input:checked + div:after {
