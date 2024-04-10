@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {
   getToken,
 } from "../../Fetch_Api//Service/LocalStorageServices";
@@ -6,38 +6,59 @@ import {
   useGetLoggedUserQuery,
   useUpdateUserInfoMutation,
 } from "../../Fetch_Api/Service/User_Auth_Api";
-import { useDispatch } from "react-redux";
 import "./Setting.scss";
-
+import { useNavigate} from "react-router-dom";
+import { fetchDataWithRetry } from '../../Fetch_Api/Service/fetchwithRetry';
 const Settings = () => {
-  const [server_error, setServerError] = useState({});
   const [Userinfo, { isLoading }] = useUpdateUserInfoMutation();
-  const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
-
+  const [userData, setuserData] = useState()
   const { access_token } = getToken();
-  const {
-    data: userData,
-    isSuccess: userSuccess,
-    isError: userError,
-  } = useGetLoggedUserQuery(access_token);
+  const navigate = useNavigate();
 
+  // const {
+  //   data: userData,
+  //   isSuccess: userSuccess,
+  //   isError: userError,
+  // } = useGetLoggedUserQuery(access_token);
+  async function fetchData() {
+    try {
+      const projectData = await fetchDataWithRetry(useGetLoggedUserQuery , access_token);
+      setuserData(projectData.data)
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+    }
+  }
+  fetchData();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const actualData = {
-      user: data.get("user"),
-      profile: data.get("profile"),
-      bio: data.get("bio"),
-      address: data.get("address"),
+      user: userData && userData.id,
     };
-    const res = await Userinfo(actualData);
+    
+    // Check if each field is not null or empty, and include it in actualData if true
+    // if (data.get("profile")) {
+    //   actualData.profile = data.get("profile");
+    // }
+    if (data.get("addresh")) {
+      actualData.address = data.get("addresh");
+    }
+    if (data.get("bio")) {
+      actualData.bio = data.get("bio");
+    }
+    if (data.get("portfolio")) {
+      actualData.portfolio = data.get("portfolio");
+    }
+    const res = await Userinfo({actualData, access_token});
+    
     if (res.error) {
-      setServerError(res.error.data.errors);
+      console.log(res.error)
     }
     if (res.data) {
-      setServerError("Saved");
-    }'/media/profile/8083b594948189.5e8c4a7bc54b4.jpg'
+      navigate('/')
+      console.log(res.data)
+    }
   };
 
   return (
@@ -46,13 +67,13 @@ const Settings = () => {
         style={{ display: "flex", alignItems: "center" }}
         className="projects-section"
       >
-        <form className="user_form" action="">
-        <div className="profile_Image">
+        <form className="user_form" action="#" onSubmit={handleSubmit}>
+        <div className="profile_Image" style={{width:"200px", background:"none"}}>
           <p>Profile Picture</p>
           <div className="image_wrapper">
          {userData && <img src={selectedFile ? URL.createObjectURL(selectedFile) : `https://project.vickytajpuriya.com${userData.userinfo.profile}`} alt="" />}
             <span>
-              <input type="file" name="" id="" onChange={(e) => setSelectedFile(e.target.files[0])}/>
+              <input type="file" name="profile" id="" onChange={(e) => setSelectedFile(e.target.files[0])}/>
               <svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                   <g id="Iconly/Light/Filter" stroke="#000000"  strokeWidth="1.5"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
                       <g id="Filter" transform="translate(4.000000, 4.500000)" stroke="var(--main-color)"  strokeWidth="1.5" >
@@ -72,9 +93,10 @@ const Settings = () => {
             <input
               type="text"
               placeholder={userData && userData.name}
-              autoComplete="email"
+              autoComplete="name"
               aria-label="Email address"
               className="Nameuser"
+              name="name"
             />
             <div className="Editinput">
               <button type="submit" aria-label="Submit" className="submitedit">
@@ -100,6 +122,7 @@ const Settings = () => {
               autoComplete="email"
               aria-label="Email address"
               className="Nameuser"
+              name="email"
             />
             <div className="Editinput">
               <button type="submit" aria-label="Submit" className="submitedit">
@@ -120,10 +143,37 @@ const Settings = () => {
           </div>
           <div className="UserName">
             <input
-              type="email"
-              placeholder={userData && userData.portfolio ? userData.portfolio : "Portfolio"}
-              autoComplete="email"
+              type="text"
+              placeholder={userData && userData.userinfo.portfolio ? userData.userinfo.portfolio : "Portfolio"}
+              autoComplete="portfolio"
               aria-label="Email address"
+              className="Nameuser"
+              name="portfolio"
+            />
+            <div className="Editinput">
+              <button type="submit" aria-label="Submit" className="submitedit">
+                <svg
+                  viewBox="0 0 16 6"
+                  aria-hidden="true"
+                  style={{ width: "1rem" }}
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M16 3 10 .5v2H0v1h10v2L16 3Z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="UserName">
+            <input
+              type="text"
+              placeholder={userData && userData.userinfo.bio ? userData.userinfo.bio : "Bio" }
+              autoComplete="bio"
+              aria-label="Email address"
+              name="bio"
               className="Nameuser"
             />
             <div className="Editinput">
@@ -146,35 +196,11 @@ const Settings = () => {
           <div className="UserName">
             <input
               type="text"
-              placeholder={userData && userData.bio ? userData.bio : "Bio" }
-              autoComplete="email"
+              placeholder={userData && userData.userinfo.address ? userData.userinfo.address : "Addresh"}
+              autoComplete="addresh"
               aria-label="Email address"
               className="Nameuser"
-            />
-            <div className="Editinput">
-              <button type="submit" aria-label="Submit" className="submitedit">
-                <svg
-                  viewBox="0 0 16 6"
-                  aria-hidden="true"
-                  style={{ width: "1rem" }}
-                >
-                  <path
-                    fill="currentColor"
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M16 3 10 .5v2H0v1h10v2L16 3Z"
-                  ></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div className="UserName">
-            <input
-              type="text"
-              placeholder={userData && userData.address ? userData.address : "Addresh"}
-              autoComplete="email"
-              aria-label="Email address"
-              className="Nameuser"
+              name="addresh"
             />
             <div className="Editinput">
               <button type="submit" aria-label="Submit" className="submitedit">

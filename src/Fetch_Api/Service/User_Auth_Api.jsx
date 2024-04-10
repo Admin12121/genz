@@ -4,7 +4,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const userAuthapi = createApi({
   reducerPath: 'userAuthapi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/user/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://project.vickytajpuriya.com/user/' }),
+  //baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/user/' }),
   endpoints:(builder) => ({
     registerUser : builder.mutation({
       query:(user)=>{
@@ -202,11 +203,24 @@ export const userAuthapi = createApi({
           },
         };
       },
-    }),    
+    }),
+    feedback: builder.mutation({
+      query:({actualData, access_token}) =>{
+        console.log(actualData)
+        return{
+          url: 'feedback/',
+          method : 'POST',
+          body : actualData,
+          headers: {
+            'authorization': `Bearer ${access_token}`,
+          }
+        }
+      }
+    })    
   }),
 })
 
-export const { useUpdateUserInfoMutation, useRegisterUserMutation, useLoginUserMutation ,useGetLoggedUserQuery , useGetUserProfileQuery , useProjectdataQuery , useProjectQuery , useViewQuery , useProjectsMutation ,useUpdateprojectsMutation ,useDeleteprojectsMutation , useCourseMutation , useChangeUserPasswordMutation, useSendPasswordResetEmailMutation, useResetPasswordMutation, useRegistrationMutation ,useRefreshAccessTokenMutation } = userAuthapi;
+export const { useUpdateUserInfoMutation, useRegisterUserMutation, useLoginUserMutation ,useGetLoggedUserQuery , useGetUserProfileQuery , useProjectdataQuery , useProjectQuery , useViewQuery , useProjectsMutation ,useUpdateprojectsMutation ,useDeleteprojectsMutation , useCourseMutation , useChangeUserPasswordMutation, useSendPasswordResetEmailMutation, useResetPasswordMutation, useRegistrationMutation ,useRefreshAccessTokenMutation, useFeedbackMutation } = userAuthapi;
 
 
 export const courseApi = createApi({

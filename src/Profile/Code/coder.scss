@@ -1,0 +1,75 @@
+.filtering_button_section{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+    @media (max-width:780px) {
+      justify-content: start;
+    }
+
+    .data_searcher{
+        @media (max-width:780px) {
+            display: none;
+        }
+    }
+    .filtring_button{
+        display: flex;
+        cursor: pointer;
+        position: relative;
+        height: 100%;
+        background: var(--search-area-bg);
+        border-radius: 10px;
+        align-items: center;
+        color: var(--main-color);
+        padding: 10px;
+        gap: 10px;
+        box-shadow:0 2px 6px 0 rgba(136, 148, 171, 0.2),
+        0 24px 20px -24px rgba(71, 82, 107, 0.1);
+        .filter_drop_down{
+            position: absolute;
+            min-width: 200px;
+            height: 155px;
+            display: flex;
+            background: var(--search-area-bg);
+            top: 50px;
+            border-radius: 10px;
+            left: 0;
+            z-index: 999;
+            flex-direction: column;
+            padding:5px;
+            font-size: 10px;
+            gap: 1px;
+            h2{
+                border-radius: 8px;
+                height: 35px;
+                display: flex;
+                font-weight: 500;
+                align-items: center;
+                gap: 15px;
+                cursor: pointer;
+                padding: 0 10px;
+                &:hover{
+                    background-color: #121212;
+                }
+                svg{
+                   width:20px;
+                }
+            }
+            // align-items: center;
+
+            
+        }
+    }
+    // background: red;
+    
+}
+.infinite-scroll-component__outerdiv{
+    padding-top: 30px;
+}
+.dark{
+    .filtring_button{
+        box-shadow: none;
+    }
+}

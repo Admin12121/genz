@@ -77,6 +77,9 @@ const Profile = () => {
   };
 
   useEffect(()=>{
+    if (darkMode == false) {
+      document.body.classList.add('dark');
+    }
      if(loading){
        updateToken();
      }
@@ -104,13 +107,19 @@ const Profile = () => {
     navigate('/');
   };
 
-  const [darkMode, setDarkModee] = useState(getMode());
+   const  theme = getMode()
+  const [darkMode, setDarkModee] = useState(theme);
   const handletoggle =() =>{
-    setDarkModee((prev) => !prev)
+    if(darkMode === "dark"){
+      setDarkModee("light")
+    }else{
+      setDarkModee("dark")
+    }
     storeMode(darkMode)
+  
   }
   useEffect(() => {
-    if (darkMode) {
+    if (darkMode === "dark") {
       document.body.classList.add('dark');
     } else {
       document.body.classList.remove('dark');

@@ -1,0 +1,119 @@
+.feedback_section{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.feedback_Wrapper{
+    // background-color: var(--projects-section);
+    border-radius: 16px;
+    padding: 14px ;
+    overflow-y: scroll;
+    height: 85%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: .5s ease;
+    @media (max-width:900px) {
+        width: 90%;
+        height: 90%;
+        padding: 0;
+    }
+    // border: 1px solid rgba(255, 255, 255, 0.3);
+    .feedback_logo_wrapper{
+        color: var(--main-color);
+        gap: 20px;
+        height: 35%;
+        width: 100%;
+        background-color: rgb(0, 0, 0);
+        border-radius: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        @media screen and (max-width: 620px) {
+            flex-direction: column;    
+            gap: 0;
+        }
+
+        h1{
+            color: #9cd16b;
+            border-radius: 14px;;
+            font-size: 50px;
+        }
+    }
+    .feedback_textfield{
+        height: 60%;
+        width: 100%;
+        background-color: var(--projects-section);
+        border-radius: inherit;
+        padding: 32px;
+        color: var(--main-color);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .inputForm {
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            transition: 0.2s ease-in-out;
+          }
+
+        .form {
+            --width-of-input: 200px;
+            --border-height: 1px;
+            --border-before-color: rgba(221, 221, 221, 0.39);
+            --border-after-color: #5891ff;
+            --input-hovered-color: #4985e01f;
+            position: relative;
+
+           }
+           /* styling of Input */
+           .input {
+            color: #fff;
+            font-size: 0.9rem;
+            background-color: transparent;
+            width: 100%;
+            box-sizing: border-box;
+            padding-inline: 0.5em;
+            padding-block: 0.7em;
+            border: none;
+            border-bottom: var(--border-height) solid var(--border-before-color);
+           }
+           /* styling of animated border */
+           .input-border {
+            position: absolute;
+            background: #9cd16b;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            transition: 0.3s;
+           }
+           /* Hover on Input */
+           input:focus {
+            outline: none;
+           }
+           /* here is code of animated border */
+           input:focus ~ .input-border {
+            width: 100%;
+           }
+           /* === if you want to do animated border on typing === */
+           /* remove input:focus code and uncomment below code */
+           /* input:valid ~ .input-border{
+             width: 100%;
+           } */
+           .feedback_button{
+            margin-top: 20px;
+            padding:8px  15px;
+            font-size: 15px;
+            background-color: #9cd16b;
+            border: none;
+            color: var(--main-color);
+            border-radius: 8px;
+           }
+        }
+}

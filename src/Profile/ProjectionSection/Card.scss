@@ -20,7 +20,7 @@
         height: 10rem;
         background-clip: border-box;
         background-image: linear-gradient(to right, var(--tw-gradient-stops));
-        background-color:  mediumslateblue;
+        background-color: #9cd16b;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         img{
             width: 100%;
@@ -45,7 +45,7 @@
                 justify-content: center;
 
                 img{
-                    background: mediumslateblue;
+                    background: #9cd16b;
                     border-radius: 8px;
                     height: 40px;
                 }
@@ -104,7 +104,7 @@
             text-align: center;
             color: #ffffff;
             vertical-align: middle;
-            background-color: mediumslateblue;
+            background-color: #9cd16b;
             transition-property: all;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 300ms;

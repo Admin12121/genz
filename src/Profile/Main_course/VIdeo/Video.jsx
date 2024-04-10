@@ -1,10 +1,10 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect , lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import {getMode} from '../../../Fetch_Api/Service/LocalStorageServices'
-import VideoJS from './Player';
+// import VideoJS from './Player';
 import './video.scss'
 import './player.css'
 import Loader from '../../../Components/Loader'
@@ -14,6 +14,7 @@ import { useCourseQuery } from "../../../Fetch_Api/Service/User_Auth_Api";
 
 const Video = () => {
   const { video_title } = useParams();
+  const LazyLoadedComponent = lazy(() => import("./Player"));
   const [copy,setCopy] = useState(false);
   const [mode, setDarkModee] = useState(getMode());
   const { access_token } = getToken();
@@ -76,7 +77,10 @@ const Video = () => {
     <>
     <div className="main_courseData_Wrapper">
       <div className="courseData_player">
-       {Data[0].video &&  <VideoJS options={videoJsOptions}  />}
+      {Data[0].video && <Suspense fallback={<Loader/>}>
+          <LazyLoadedComponent  options={videoJsOptions} />
+        </Suspense>}
+       {/* {Data[0].video &&  <VideoJS options={videoJsOptions}  />} */}
       </div>
       <div className="Course_title_Wrapper">
         <h1>{Data.content}</h1>

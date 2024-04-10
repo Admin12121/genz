@@ -32,7 +32,8 @@ const Sign = () => {
     <div style={{height: "120vh"}} className={style.login}>
     <form action="#" className={style.form} onSubmit={handleSubmit}>
     <div className={style.icon_logo}>
-        <img src="/logo1.svg" alt="" />
+        <img src="meta.png" alt="" />
+        <h1>genzcoder</h1>
       </div>
       <div className={style.flex_column}>
         <label  className={style.flex_columnlabel}>User Name </label>

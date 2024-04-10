@@ -89,7 +89,7 @@ const ContextMenu = () => {
                 </span>
             </button> */}
             <span>
-            <Link className='ahref' to="/profile/settings">
+            <Link className='ahref' to="/settings">
             <button className="Menu_icons_wrapper ahrefff">
                 <svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                     <g id="Iconly/Light/Setting" stroke="var(--main-color)"  strokeWidth="2"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
