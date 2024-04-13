@@ -1,11 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link , useParams} from "react-router-dom";
 import "./header.scss";
 
 const Header = ({ handleLogout, name, profile, email, darkMode }) => {
   const [open, setOpen] = useState(false);
-
+  const {username, project_title} = useParams();
   let menuRef = useRef();
   useEffect(() => {
     let handler = (e)=>{
@@ -27,16 +26,23 @@ const Header = ({ handleLogout, name, profile, email, darkMode }) => {
       <div className="app-header-left">
         {/* <span className="app-icon"></span> */}
         {/* <p className="app-name">Portfolio</p> */}
-        <motion.div
+        <div
           className="logo"
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 200, duration: 1 }}
         >
-          <Link to="/" className="logo">
-            <img src="/logo1.svg" alt="" />
+          <Link to="/" className='meta_logo'>
+            <img src="/meta.png" alt="" />
           </Link>
-        </motion.div>
+          {       username && project_title ?
+            <span className='user_code'>
+              <Link to={`/${username}`} style={{fontSize:"10px",color: "var(--main-color)", opacity:".8"}}>{username && project_title && username}</Link>
+              <p>{username && project_title && project_title}</p>
+            </span>
+            :
+          <Link to="/">
+                <p>genzcoder</p>
+          </Link>
+            }
+        </div>
       </div>
       <div className="app-header-right">
         <button className="mode-switch"  title="Switch Theme">
@@ -45,6 +51,7 @@ const Header = ({ handleLogout, name, profile, email, darkMode }) => {
             <div></div>
           </label>
         </button>
+        <p style={{color:"var(--main-color)"}}>|</p>
         {/* <button className="notification-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -78,14 +85,14 @@ const Header = ({ handleLogout, name, profile, email, darkMode }) => {
                                           </g>
                                       </g>
                                   </svg>} to={""} text = {"Profile"}/>
-            <DropdownItem img = {<svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+            {/* <DropdownItem img = {<svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                       <g id="Iconly/Light/Message" stroke="var(--main-color)"  strokeWidth="2"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
                                           <g id="Message" transform="translate(2.000000, 3.000000)" stroke="var(--main-color)"  strokeWidth="2" >
                                               <path d="M15.9026143,5.8511436 L11.4593272,9.46418164 C10.6198313,10.1301843 9.4387043,10.1301843 8.59920842,9.46418164 L4.11842516,5.8511436" id="Stroke-1"></path>
                                               <path d="M14.9088637,17.9999789 C17.9502135,18.0083748 20,15.5095497 20,12.4383622 L20,5.57001263 C20,2.49882508 17.9502135,5.32907052e-15 14.9088637,5.32907052e-15 L5.09113634,5.32907052e-15 C2.04978648,5.32907052e-15 1.77635684e-15,2.49882508 1.77635684e-15,5.57001263 L1.77635684e-15,12.4383622 C1.77635684e-15,15.5095497 2.04978648,18.0083748 5.09113634,17.9999789 L14.9088637,17.9999789 Z" id="Stroke-3"></path>
                                           </g>
                                       </g>
-                                  </svg>} to={"https://mail.google.com/"} text = {"Inbox"}/>
+                                  </svg>} to={"https://mail.google.com/"} text = {"Inbox"}/> */}
             <DropdownItem img = {<svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                       <g id="Iconly/Light/Setting" stroke="var(--main-color)"  strokeWidth="2"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
                                           <g id="Setting" transform="translate(2.500000, 1.500000)" stroke="var(--main-color)"  strokeWidth="2" >
@@ -94,15 +101,8 @@ const Header = ({ handleLogout, name, profile, email, darkMode }) => {
                                           </g>
                                       </g>
                                   </svg>} to={"settings"} text = {"Settings"}/>
-            <DropdownItem img = {<svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                                      <g id="Iconly/Light/Danger-Circle" stroke="var(--main-color)"  strokeWidth="2"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
-                                          <g id="Danger-Circle" transform="translate(2.000000, 2.000000)" stroke="var(--main-color)" >
-                                              <path d="M10.0001,0.7501 C15.1081,0.7501 19.2501,4.8911 19.2501,10.0001 C19.2501,15.1081 15.1081,19.2501 10.0001,19.2501 C4.8911,19.2501 0.7501,15.1081 0.7501,10.0001 C0.7501,4.8911 4.8911,0.7501 10.0001,0.7501 Z" id="Stroke-1" strokeWidth="2" ></path>
-                                              <line x1="9.9952" y1="6.2042" x2="9.9952" y2="10.6232" id="Stroke-3" strokeWidth="2" ></line>
-                                              <line x1="9.995" y1="13.7961" x2="10.005" y2="13.7961" id="Stroke-5" strokeWidth="2" ></line>
-                                          </g>
-                                      </g>
-                                  </svg>} to={"help"} text = {"Helps"}/>
+            <DropdownItem img = {<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" className="w-5 h-5"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M10 3h4a8 8 0 1 1 0 16v3.5c-5-2-12-5-12-11.5a8 8 0 0 1 8-8zm2 14h2a6 6 0 1 0 0-12h-4a6 6 0 0 0-6 6c0 3.61 2.462 5.966 8 8.48V17z"></path></svg>} to={"feedback"} text = {"Send feedback"}/>
+           <span></span>
             <DropdownItem logout={handleLogout} img = {<svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                                           <g id="Iconly/Light/Logout" stroke="var(--main-color)"  strokeWidth="2"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
                                                               <g id="Logout" transform="translate(2.000000, 2.000000)" stroke="var(--main-color)"  strokeWidth="2" >
@@ -116,7 +116,7 @@ const Header = ({ handleLogout, name, profile, email, darkMode }) => {
         </div>
         </div>
       </div>
-      <button className="messages-btn">
+      {/* <button className="messages-btn">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -131,7 +131,7 @@ const Header = ({ handleLogout, name, profile, email, darkMode }) => {
         >
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
         </svg>
-      </button>
+      </button> */}
     </div>
   );
 };

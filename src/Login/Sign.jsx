@@ -1,6 +1,6 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { useRegisterUserMutation } from '../Fetch_Api/Service/User_Auth_Api'
-import { storeToken } from '../Fetch_Api/Service/LocalStorageServices';
+import {toast } from 'sonner';
 import { useNavigate, Link } from 'react-router-dom';
 import style from './style.module.scss'
 
@@ -8,6 +8,22 @@ const Sign = () => {
   const [server_error, setServerError] = useState({});
   const navigate = useNavigate();
   const [registerUser, { isLoading }] = useRegisterUserMutation();
+  useEffect(() => {
+    // Check if server_error is not empty and it has at least one key
+    if (Object.keys(server_error).length > 0) {
+      // Get the first key from the server_error object
+      const errorKey = Object.keys(server_error)[0];
+
+      // Check if the errorKey exists in server_error and it has at least one message
+      if (server_error[errorKey] && server_error[errorKey].length > 0) {
+        const errorMessage = server_error[errorKey][0];
+
+        // Display the toast notification
+        toast.error(errorMessage );
+      }
+    }
+  }, [server_error]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -23,7 +39,8 @@ const Sign = () => {
       setServerError(res.error.data.errors);
     }
     if (res.data) {
-      storeToken(res.data.token);
+      console.log(res.data)
+      toast.success(res.data.msg);
       navigate("/");
     }
   };
@@ -32,7 +49,8 @@ const Sign = () => {
     <div style={{height: "120vh"}} className={style.login}>
     <form action="#" className={style.form} onSubmit={handleSubmit}>
     <div className={style.icon_logo}>
-        <img src="/logo1.svg" alt="" />
+        <img src="meta.png" alt="" />
+        <h1>genzcoder</h1>
       </div>
       <div className={style.flex_column}>
         <label  className={style.flex_columnlabel}>User Name </label>

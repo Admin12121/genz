@@ -7,6 +7,7 @@ import { useGetLoggedUserQuery, useRefreshAccessTokenMutation } from '../Fetch_A
 import { setUserToken, unSetUserToken } from '../Fetch_Api/Feature/authSlice';
 import { getToken,storeToken, removeToken, storeMode, getMode } from '../Fetch_Api/Service/LocalStorageServices';
 import { useDispatch } from "react-redux";
+import {toast } from 'sonner';
 import ContextMenu from "./ContextMenu/ContextMenu";
 
 const Profile = () => {
@@ -77,6 +78,9 @@ const Profile = () => {
   };
 
   useEffect(()=>{
+    if (darkMode == false) {
+      document.body.classList.add('dark');
+    }
      if(loading){
        updateToken();
      }
@@ -101,16 +105,23 @@ const Profile = () => {
     // Clear user data from Redux store
     dispatch(unSetUserToken({ access_token: null }));
     removeToken();
+    toast.success("Logged out")
     navigate('/');
   };
 
-  const [darkMode, setDarkModee] = useState(getMode());
+   const  theme = getMode()
+  const [darkMode, setDarkModee] = useState(theme);
   const handletoggle =() =>{
-    setDarkModee((prev) => !prev)
+    if(darkMode === "dark"){
+      setDarkModee("light")
+    }else{
+      setDarkModee("dark")
+    }
     storeMode(darkMode)
+  
   }
   useEffect(() => {
-    if (darkMode) {
+    if (darkMode === "dark") {
       document.body.classList.add('dark');
     } else {
       document.body.classList.remove('dark');

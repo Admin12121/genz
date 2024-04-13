@@ -295,11 +295,11 @@ video {
 .video-js .vjs-control-bar {
   width: 100%;
   position: absolute;
-  bottom: 14px;
-  left: 14px;
-  width: calc(100% - 28px);
+  bottom: 14px !important;
+  left: 14px !important;
+  width: calc(100% - 28px) !important;
   right: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   height: 4em;
   background-color: #2b333f;
   background-color: rgba(43, 51, 63, 0.7);
@@ -405,4 +405,8 @@ video {
 .vjs-poster img{
   height: 100%;
   object-fit: cover;
+}
+
+.vjs-poster img{
+  object-fit: cover !important;
 }

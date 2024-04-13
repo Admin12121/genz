@@ -29,3 +29,8 @@ a{
 #bg-developer_mode{
     background: #151417;
 }
+section[aria-label="Notifications alt+T"]{
+    height: 100%;
+    position: absolute;
+    top: 0;
+}

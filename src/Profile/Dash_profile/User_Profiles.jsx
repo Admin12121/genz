@@ -7,7 +7,7 @@ import axios from "axios";
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from '../../Components/Loader';
-
+import Load from "../../Components/Load"
 const User_Profiles = () => {
     const {username} = useParams();
     const { access_token } = getToken();
@@ -26,13 +26,12 @@ const User_Profiles = () => {
       if (userData && userData.length > 0 && userData[0]) {
         setUser(userData[0]);
       }
-
     }, [userData ]); 
 
     useEffect(() => {
       const fetchData = async () => {
           try {
-              const response = await axios.get(`http://localhost:8000/user/projects/?name=${username}&page=${page}`);
+              const response = await axios.get(`https://project.vickytajpuriya.com/user/projects/?name=${username}&page=${page}`);
               setprojectData(response.data.results);
               setTotal(response.data.count)
           } catch (error) {
@@ -48,51 +47,82 @@ const User_Profiles = () => {
   }, []);
 
   const fetchmore = async  () =>  {
-      const response = await axios.get(
-          `http://localhost:8000/user/projects/?name=${username}&page=${page}`
+      const response = await axios.get( 
+          `https://project.vickytajpuriya.com/user/projects/?name=${username}&page=${page}`
       );
       setprojectData((prev) => {
           return [...prev, ...response.data.results];
       });
   }
   useEffect(()=>{
-      if(page>1){
+      if(page>1 ){
           fetchmore()
       }
   },[page])
 
   const fetchpage =() =>{
+    if(projectData.length >= total){
+      sethasMore(false)
+    } else(
       setPage(prev => prev + 1)
-      if(projectData.length >= total){
-          sethasMore(false)
-      }
+    )
   }
+  
+  useEffect(() => {
+    // Load initial project data
+    loadProjectData();
+  }, [projectData]);
+
+  const loadProjectData = () => {
+    if (projectData) {
+      projectData.forEach(project => {
+        updateIframeContent(project);
+      });
+    }
+  };
+
+  const updateIframeContent = (project) => {
+    const iframeId = `iframe_${project.id}`;
+    const iframe = document.getElementById(iframeId);
+    
+    if (iframe) {
+      iframe.contentDocument.body.innerHTML = project.html_code + "<style>" + project.css_code + "</style>";
+    }
+  };
+
   return (
     <>
-      <div  id="scrollableProjects"  className={`projects-section project-view`} >
+      <div  id="scrollableProjects"  className={`projects-section project-view`}  style={{padding:"10px 10px 0 10px"}}>
         <div className="profile_Image" style={{flexDirection:"column",gap:"20px"}}>
+                  {user && <h1>{user.name}</h1>}
             <div className="image_wrapper">
-            {user && <img src={`https://project.vickytajpuriya.com/${user.userinfo.profile}`} alt="" />}
+            {user && <img src={`https://project.vickytajpuriya.com${user.userinfo.profile}`} alt={`${user.name}`} />}
             </div>
             <div className="user_info_wrapper">
               <span className="sett">
-                  {user &&  <a href={`mailto:${user.email}`} style={{color:"var(--main-color)"}}>{user.email}</a>}
-                  {user && <h1>{user.name}</h1>}
-                  <a href={user && user.userinfo.portfolio} target="_blank" style={{color:"var(--main-color)"}}>{user && user.userinfo.portfolio}</a>
+                  {user &&  <a href={`mailto:${user.email}`} style={{color:"var(--main-color)"}}>
+                  <svg width="24px"  height="24px"  viewBox="0 0 24 24"  fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.9028 8.85114L13.4596 12.4642C12.6201 13.1302 11.4389 13.1302 10.5994 12.4642L6.11865 8.85114" stroke="var(--main-color)"  strokeWidth="1.5"  strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M22 11.5V8.57001C22 5.49883 19.9502 3 16.9089 3H7.09114C4.04979 3 2 5.49883 2 8.57001V15.4384C2 18.5095 4.04979 21.0084 7.09114 21H16.9089C19.9502 21.0084 22 18.5095 22 15.4384V15" stroke="var(--main-color)"  strokeWidth="1.5"  strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                    {user.email}</a>}
+                  {user && user.userinfo.portfolio && <a href={user && user.userinfo.portfolio} target="_blank" style={{color:"var(--main-color)"}}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" className="group-hover:text-sky-500 transition-colors"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M18.364 15.536L16.95 14.12l1.414-1.414a5 5 0 1 0-7.071-7.071L9.879 7.05 8.464 5.636 9.88 4.222a7 7 0 0 1 9.9 9.9l-1.415 1.414zm-2.828 2.828l-1.415 1.414a7 7 0 0 1-9.9-9.9l1.415-1.414L7.05 9.88l-1.414 1.414a5 5 0 1 0 7.071 7.071l1.414-1.414 1.415 1.414zm-.708-10.607l1.415 1.415-7.071 7.07-1.415-1.414 7.071-7.07z"></path></svg>
+                    {user && user.userinfo.portfolio}</a>}
               </span>
             </div>
             <div className="user_per_info">
               <p>{user && user.userinfo.bio}</p>
             </div>
         </div>
-        <div className="users_projects_section">
+        <div className="users_projects_section" style={{display: "flex", flexDirection:"column", gap: "50px"}}>
           <h1>Projects</h1>
           <div className="user_project_erapper" style={{display:"flex", flexWrap: "wrap", gap: "20px", justifyContent:"center"}}>
           {projectData &&  <InfiniteScroll
            dataLength={projectData.length}
            next={fetchpage}
            hasMore={hasmore}
-           loader={<Loader />}
+           loader={<Data_loader/>}
            scrollableTarget="scrollableProjects"
            endMessage={
             <p style={{ textAlign: 'center', width: "100%", height: "50px" }}>
@@ -111,25 +141,25 @@ const User_Profiles = () => {
   )
 }
 const ProjectCard = ({ project }) => {
-  const { id, username, project_title, profile, html_code, css_code, views, likes } = project;
+  const { id, username, project_title, profile, views, likes } = project;
   const navigate = useNavigate();
   return (
       <div className="Course_wrapper pro-course-wrapper" key={id}>
           <div className="Course_card proj-course-card">
               <div className="course_image pro-course-img">
-                  <iframe id={`iframe_${id}`} frameBorder="0" srcDoc={`${html_code}<style>${css_code}</style>`}></iframe>
+                  <iframe id={`iframe_${id}`} frameBorder="0"></iframe>
                   <div onClick={() => navigate(`/code/${username}/${project_title}`)} className="iframe_link"></div>
               </div>
               <div className="text_area">
                   <span className="user-project">
                       <span>
                           <Link to={`/${username}`}>
-                              <img src={`http://127.0.0.1:8000/${profile}`} alt="" />
+                              <img src={`https://project.vickytajpuriya.com${profile}`} alt="" />
                           </Link>
                       </span>
                       <span>
                           <h1>{project_title}</h1>
-                          <Link to={`/${username}`} style={{ color: "#fff" }}>
+                          <Link to={`/${username}`} style={{ color: "var(--main-color)" }}>
                               <p>{username}</p>
                           </Link>
                       </span>
@@ -154,4 +184,18 @@ const ProjectCard = ({ project }) => {
       </div>
   );
 };
+
+
+const Data_loader = ({}) =>{
+  return(
+      <>
+        <Load/>
+         <Load/>
+         <Load/>
+         <span style={{width:"100%",    display: "flex", alignItems: "center", justifyContent: "center", height: "100px"}}> 
+          <Loader />
+         </span>
+      </>
+  )
+}
 export default User_Profiles

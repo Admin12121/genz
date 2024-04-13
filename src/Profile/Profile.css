@@ -7,6 +7,9 @@
 :root {
   --app-container: #f3f6fd;
   --main-color: #1f1c2e;
+  --filter: invert(0);
+  --profile-button:#fff;
+  --profile-button2:#f3f6fd;
   --secondary-color: #4a4a4a;
   --link-color: #1f1c2e;
   --link-color-hover: #c3cff4;
@@ -25,25 +28,25 @@
   --message-btn: #fff;
   --card-transparent: #ffffff;
   --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .dark {
   --app-container: #1f1d2b;
-  /* --app-container: #111827; */
+  --filter: invert(1);
   --menu:rgba(255, 255, 255, 0.1);
   --app-container: #121212;
   --card-transparent: rgba(255, 255, 255, 0.05);
   --box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  --profile-button: #212121 ;
   --main-color: #fff;
   --secondary-color: rgba(255, 255, 255, 0.8);
-  /* --projects-section: #1f2937; */
   --projects-section: #2a2929;
   --link-color: rgba(255, 255, 255, 0.8);
   --link-color-hover: rgba(195, 207, 244, 0.1);
   --link-color-active-bg: rgba(195, 207, 244, 0.2);
   --button-bg: #1f2937;
-  --search-area-bg: #353434;
+  --search-area-bg: #212121;
   --message-box-hover: #243244;
   --message-box-border: rgba(255, 255, 255, 0.1);
   --star: #ffd92c;
@@ -102,7 +105,7 @@ a {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 16px 24px;
+  padding: 10px 24px;
   position: relative;
 }
 .app-header-left,
@@ -120,9 +123,7 @@ a {
     gap: 10px; /* or any other styling for display */
   }
 }
-.app-header-right button {
-  margin-left: 10px;
-}
+
 .app-icon {
   width: 26px;
   height: 2px;
@@ -172,14 +173,14 @@ a {
 } */
 .search-wrapper {
   /* color: #fff; */
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: var(--search-area-bg);
   padding-right: 12px;
   height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 50%;
   max-width: 480px;
   color: var(--light-font);
   box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
@@ -238,16 +239,21 @@ input::placeholder {
   background-color: transparent;
   display: flex;
   align-items: center;
-  padding-left: 12px;
-  border-left: 2px solid #ddd;
+  padding: 4px 4px 4px 10px;
+  flex-direction: row-reverse;
+  transition: .5s ease;
+  border-radius: 8px;
+}
+.profile-btn:hover{
+  background-color: var(--profile-button);
 }
 .profile-btn img {
   width: 32px;
   height: 32px;
   -o-object-fit: cover;
   object-fit: cover;
-  border-radius: 50%;
-  margin-right: 4px;
+  border-radius: 5px;
+  margin-left: 10px;
 }
 .profile-btn span {
   color: var(--main-color);
@@ -316,7 +322,7 @@ display: none;
 .projects-section {
   flex: 2;
   background-color: var(--projects-section);
-  border-radius: 32px;
+  border-radius: 16px;
   padding: 32px 32px 0 32px;
   /* overflow: hidden; */
   overflow-y: scroll;
@@ -324,6 +330,10 @@ display: none;
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.wart{
+  padding: 10px;
 }
 .projects-section-line {
   display: flex;
@@ -805,9 +815,6 @@ display: none;
     height: 16px;
   }
 
-  .app-header-right button {
-    margin-left: 4px;
-  }
 }
 @media screen and (max-width: 520px) {
   .projects-section {
@@ -869,11 +876,6 @@ display: none;
 
   .projects-section {
     padding: 24px 16px 40px 16px;
-  }
-
-  .profile-btn img {
-    width: 24px;
-    height: 24px;
   }
 
   .app-header {

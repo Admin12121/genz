@@ -4,13 +4,15 @@
   gap: 30px;
   .pro-course-wrapper{
     height: 350px;
-    width: 420px;
+    // width: 420px;
+    width: 30%;
+    min-width: 350px;
     .proj-course-card{
       height: 100%;
       width: 100%;
     .pro-course-img{
       height: 100%;
-      background-color: transparent;
+      // background-color: transparent;
       iframe{
         background-color: #fff;
         cursor: pointer;
@@ -150,7 +152,7 @@
   }
   
   .button--primary {
-    background-color: mediumslateblue;
+    background-color: #9cd16b;
     color: #FFF;
     padding: 0.75rem 1.25rem;
     border-radius: 0.25rem;
@@ -187,7 +189,7 @@
   
   .input__field:focus {
     outline: none;
-    border-color: mediumslateblue;
+    border-color: #9cd16b;
   }
   
   .input__field--textarea {

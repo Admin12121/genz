@@ -20,10 +20,15 @@
   .icon_logo {
     height: 80px;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: #9cd16b;
   }
   .icon_logo  img{
     height: 100%;
-    width: 100%;
+    // width: 100%;
   }
 
   ::placeholder {
