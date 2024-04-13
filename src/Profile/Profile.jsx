@@ -7,6 +7,7 @@ import { useGetLoggedUserQuery, useRefreshAccessTokenMutation } from '../Fetch_A
 import { setUserToken, unSetUserToken } from '../Fetch_Api/Feature/authSlice';
 import { getToken,storeToken, removeToken, storeMode, getMode } from '../Fetch_Api/Service/LocalStorageServices';
 import { useDispatch } from "react-redux";
+import {toast } from 'sonner';
 import ContextMenu from "./ContextMenu/ContextMenu";
 
 const Profile = () => {
@@ -104,6 +105,7 @@ const Profile = () => {
     // Clear user data from Redux store
     dispatch(unSetUserToken({ access_token: null }));
     removeToken();
+    toast.success("Logged out")
     navigate('/');
   };
 

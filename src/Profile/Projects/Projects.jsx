@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Editor.scss";
 import "./create.scss";
 import { useNavigate, Link } from 'react-router-dom';
-
+import {toast } from 'sonner';
 import { getToken} from "../../Fetch_Api//Service/LocalStorageServices";
 import { useGetLoggedUserQuery,useProjectsMutation } from "../../Fetch_Api/Service/User_Auth_Api";
 
@@ -40,12 +40,6 @@ const Projects = () => {
     
     if (iframe) {
       iframe.contentDocument.body.innerHTML = project.html_code + "<style>" + project.css_code + "</style>";
-    //   try {
-    //     iframe.contentWindow.eval(project.js_code);
-    // } catch (error) {
-    //     console.error('Error in executing JavaScript code:', error);
-    //     return;
-    // }
     }
   };
 
@@ -66,17 +60,16 @@ const Projects = () => {
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <title>Document</title>
       </head>
-      
-      <body>
-        <div className="loader"></div>
-      </body>
+        <body>
+          <div class="loader"></div>
+        </body>
       </html>`,
       css_code: `
       *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-    }
+      }
 
       body{
         width: 100%;
@@ -156,9 +149,9 @@ const Projects = () => {
 
     try {
       const res = await projects({actualData, access_token});
-
       if (res.data) {
         setproject((prev) => !prev);
+        toast.success(`${actualData.project_title} Created`);
         refetchUser();
         document.getElementById('project_formrt').reset();
       }
@@ -250,7 +243,7 @@ const Projects = () => {
           <form id="project_formrt" className="modal" onSubmit={HandleProjectSubmit}>
             <div className="modal__header">
               <span className="modal__title">New project</span>
-              <button
+              <span
                 onClick={() => {
                   setproject((prev) => !prev);
                 }}
@@ -265,7 +258,7 @@ const Projects = () => {
                   <path fill="none" d="M0 0h24v24H0V0z"></path>
                   <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path>
                 </svg>
-              </button>
+              </span>
             </div>
             <div className="modal__body">
               <div className="input" >

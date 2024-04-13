@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from "../../Components/Loader";
 import { getToken, getMode} from '../../Fetch_Api/Service/LocalStorageServices';
 import './style.scss'
+import {toast } from 'sonner';
 import DOMPurify from "dompurify";
 
 const IDM = () => {
@@ -15,7 +16,6 @@ const IDM = () => {
     const [loading, setLoading] = useState(true);
     const [filename, setfilename] = useState("index.html");
     const [projectsett, setprojectsett] = useState(false);
-    const [zoom, setZoom] = useState(false);
     const [mountcomp, setmountComp] = useState(false);
     const [save, setSave] = useState(false);
     const navigate = useNavigate();
@@ -31,7 +31,6 @@ const IDM = () => {
     const id = Data.id || Data[0] && Data[0].id
     const theme = getMode()
     const [mode, setmode] = useState(theme);
-    
     const {
       data: userData,
     } = useGetLoggedUserQuery(access_token);
@@ -48,13 +47,11 @@ const IDM = () => {
 
         const handleResize = () => {
           const screenWidth = window.innerWidth;
-          // if (screenWidth <= 1000) {
-          //   setScreen(true)
-          //   setgridi(true)
-          // } else {
-          //   setScreen(false)
-          //   setgridi(false)
-          // }
+           if (screenWidth <= 1000) {
+             setScreen(true)
+           } else {
+             setScreen(false)
+           }
         };
         handleResize();
         window.addEventListener('resize', handleResize);
@@ -64,7 +61,6 @@ const IDM = () => {
     }, [data]);
 
        if (loading) {
-         // You can replace this with your own loading animation or message
          return <>
            <div style={{display: "flex", alignItems: "center", justifyContent: 'center', height:"100%" ,width:"100%"}}>
            <Loader/>
@@ -120,6 +116,7 @@ const IDM = () => {
         e.preventDefault();
         try {
           const res = await deleteprojects({id,access_token,username});
+          toast.success(`Project Deleted`);
          navigate(`/project`)
         } catch (error) {
           console.error("Error in HandleProjectSubmit:", error);
@@ -145,6 +142,7 @@ const IDM = () => {
             if (save == false) {
               setSave(true);
               setprojectsett((prev) => !prev);
+              toast.success(`Project Saved`);
             }
           }
         } catch (error) {
@@ -169,6 +167,7 @@ const IDM = () => {
           if (res.data) {
             if (save == false) {
               setSave(true);
+              toast.success(`Project Updated`);
             }
           }
         } catch (error) {
@@ -260,8 +259,8 @@ const IDM = () => {
       </div>
     <div  className="projects-section" style={{padding:"10px"}}>
     {data && !loading && 
-      (<SplitPane split="horizontal">
-        <SplitPane minsize="5%" split="vertical">
+      (<SplitPane split={`${gridi ?  "horizontal" : !screen ? "vertical" : "horizontal"}`}>
+        <SplitPane minsize="5%" split={`${gridi  ?  "vertical" : !screen ? "horizontal" : "vertical" }`}>
           <div className="Panal code_editor" >
           <div
                 className="code_header "
@@ -269,8 +268,8 @@ const IDM = () => {
               >
                 <span>
                   <span onClick={()=>{setquery("html")}}>HTML</span>
-                  {screen && <span onClick={()=>{setquery("css")}}>CSS</span>}
-                  {screen && <span onClick={()=>{setquery("js")}}>JS</span>}
+                  {/* {screen && <span onClick={()=>{setquery("css")}}>CSS</span>}
+                  {screen && <span onClick={()=>{setquery("js")}}>JS</span>} */}
                 </span>
                 <span className="grid_butt">
                   {!screen && <button
@@ -279,7 +278,7 @@ const IDM = () => {
                     }}
                     className="rot_gridi"
                   >
-                    {gridi ? 
+                    { !gridi ? 
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M22 7.81V16.19C22 19.83 19.83 22 16.19 22H9.75V2H16.19C19.83 2 22 4.17 22 7.81Z" fill="#fff"/>
                       <path d="M8.25 2V22H7.81C4.17 22 2 19.83 2 16.19V7.81C2 4.17 4.17 2 7.81 2H8.25Z" fill="#fff"/>
@@ -296,8 +295,9 @@ const IDM = () => {
                       setgridi((prev) => !prev);
                     }: ''}
                     className="rot_gridii"
+                    style={{rotate:"-90deg"}}
                   >
-                    {gridi ?                     
+                    {!gridi ?                     
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#ffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M9 2V22" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -411,9 +411,9 @@ const IDM = () => {
                 className="code_header"
                 style={{ width: ` ${gridi ? "100%" : "100%"}`, justifyContent: `${screen ? 'unset': 'space-between' }` , gap: `${screen ? '10px': '0' }` }}
               >
-                  {screen && <span onClick={()=>{setquery("html")}}>HTML</span>}
+                  {/* {screen && <span onClick={()=>{setquery("html")}}>HTML</span>} */}
                   <span onClick={()=>{setquery("css")}}>CSS</span>
-                  {screen && <span onClick={()=>{setquery("js")}}>JS</span>}
+                  {/* {screen && <span onClick={()=>{setquery("js")}}>JS</span>} */}
               </div>
           <Editor className="edit_me"
                 height={"100%" }
@@ -494,8 +494,8 @@ const IDM = () => {
                 className="code_header"
                 style={{ width: ` ${gridi ? "100%" : "100%"}`, justifyContent: `${screen ? 'unset': 'space-between' }` , gap: `${screen ? '10px': '0' }`  }}
               >
-                  {screen && <span onClick={()=>{setquery("html")}}>HTML</span>}
-                  {screen && <span onClick={()=>{setquery("css")}}>CSS</span>}
+                  {/* {screen && <span onClick={()=>{setquery("html")}}>HTML</span>}
+                  {screen && <span onClick={()=>{setquery("css")}}>CSS</span>} */}
                   <span onClick={()=>{setquery("js")}}>JS</span>
               </div>
           <Editor className="edit_me"
@@ -574,11 +574,6 @@ const IDM = () => {
           </div>
         </SplitPane>
         <div minsize="5%" className="Panal pre_view">
-                <span onClick={() => { setZoom((prev) => !prev); }} className="pre_but" >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 15V18C4 19.1046 4.89543 20 6 20H9M15.2173 20H18C19.1046 20 20 19.1046 20 18V15M20 9V6C20 4.89543 19.1046 4 18 4H15M4 9V6C4 4.89543 4.89543 4 6 4H9" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                </span>
             <iframe id="output" ></iframe>
         </div>
       </SplitPane>)}

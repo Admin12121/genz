@@ -1,9 +1,10 @@
-import React from "react";
+import { useRef } from 'react';
 import "./feedback.scss";
+import {toast } from 'sonner';
 import {useGetLoggedUserQuery, useFeedbackMutation  } from "../../Fetch_Api/Service/User_Auth_Api";
 import { getToken} from '../../Fetch_Api/Service/LocalStorageServices';
 const Feedback = () => {
-
+    const formRef = useRef(null);
     const { access_token } = getToken();
     const [ Feedback, {isLoading}] = useFeedbackMutation();
     const {
@@ -19,6 +20,13 @@ const Feedback = () => {
       };
       try{
         const res = await Feedback({actualData, access_token}) ;
+        if (res.error) {
+          toast.error("Failed to Submit");
+        }
+        if (res.data) {
+          formRef.current.reset();
+          toast.success("Feedback submited");
+        }
       } catch (error) {
         console.error("Error in HandleProjectSubmit:", error);
       }
@@ -51,7 +59,7 @@ const Feedback = () => {
                         </svg>
                        {userData && <input placeholder={`${userData.email}`} disabled className="input" type="text" name="email" required/>}
                 </div>
-              <form id="project_formrt" onSubmit={HandleFeedback}>
+              <form ref={formRef} id="project_formrt" onSubmit={HandleFeedback}>
                 <div className="form">
                   <input
                     className="input"

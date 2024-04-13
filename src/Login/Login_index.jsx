@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate,Link } from "react-router-dom";
 import { setUserToken } from "../Fetch_Api/Feature/authSlice";
+import {toast } from 'sonner';
 import {
   getToken, 
   storeToken,
@@ -13,6 +14,21 @@ const Login_index = () => {
   const navigate = useNavigate();
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const dispatch = useDispatch();
+  useEffect(() => {
+    // Check if server_error is not empty and it has at least one key
+    if (Object.keys(server_error).length > 0) {
+      // Get the first key from the server_error object
+      const errorKey = Object.keys(server_error)[0];
+
+      // Check if the errorKey exists in server_error and it has at least one message
+      if (server_error[errorKey] && server_error[errorKey].length > 0) {
+        const errorMessage = server_error[errorKey][0];
+
+        // Display the toast notification
+        toast.error(errorMessage );
+      }
+    }
+  }, [server_error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,18 +40,21 @@ const Login_index = () => {
     const res = await loginUser(actualData);
     if (res.error) {
       setServerError(res.error.data.errors);
+      // const errorMessage = Object.values(server_error)[0][0];
+      // toast.error(errorMessage);
     }
     if (res.data) {
       storeToken(res.data.token);
       let { access_token } = getToken();
       dispatch(setUserToken({ access_token: access_token }));
+      toast.success(res.data.msg);
       redirect()
     }
   };
   function redirect() {
     navigate('/')
   }
-  
+
   // let { access_token } = getToken();
   // useEffect(() => {
   //   dispatch(setUserToken({ access_token: access_token }));

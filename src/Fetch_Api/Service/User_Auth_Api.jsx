@@ -206,9 +206,8 @@ export const userAuthapi = createApi({
     }),
     feedback: builder.mutation({
       query:({actualData, access_token}) =>{
-        console.log(actualData)
         return{
-          url: 'feedback/',
+          url: 'feedback',
           method : 'POST',
           body : actualData,
           headers: {

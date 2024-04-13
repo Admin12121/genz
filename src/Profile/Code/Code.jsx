@@ -14,15 +14,23 @@ const Code = () => {
     const [hasmore, sethasMore] = useState(true)
     const [total, setTotal] = useState(0)
     const [drop, setDrop] = useState(false)
+    const [query, setQuery] = useState('')
     const [short, setShort] = useState('Randomized')
+    
     useEffect(() => {
+        setQuery('')
         setPage(PAGE_NUMBER); // Reset page to 1 whenever short changes
         fetchData();
     }, [short]);
 
+    const handleInputchange = (event) => {
+        setQuery(event.target.value);
+    };
+
     const fetchData = async () => {
         try {
-            const response = await axios.get(`https://project.vickytajpuriya.com/user/projects/?filter=${short}`);
+             const response = await axios.get(`https://project.vickytajpuriya.com/user/projects/?filter=${query ? query : short}`);
+            //const response = await axios.get(`http://localhost:8000/user/projects/?filter=${query ? query : short}`);
             if (page === 1) {
                 setprojectData(response.data.results);
             } else {
@@ -38,8 +46,8 @@ const Code = () => {
 
     const fetchmore = async  () =>  {
         const response = await axios.get(
-            `https://project.vickytajpuriya.com/user/projects/?filter=${short}&page=${page}`
-            //`http://127.0.0.1:8000/user/projects/?filter=${short}&page=${page}`
+            `https://project.vickytajpuriya.com/user/projects/?filter=${query ? query : short}&page=${page}`
+            //`http://127.0.0.1:8000/user/projects/?filter=${query ? query : short}&page=${page}`
         );
 
         setprojectData((prev) => {
@@ -106,9 +114,10 @@ const Code = () => {
                 </span>}
             </span>
             
-            <div className="search-wrapper data_searcher">
-                <input className="search-input" type="text" placeholder="Search"/>
+            <div className="search-wrapper data_searcher" >
+                <input className="search-input" value={query} type="text" onChange={handleInputchange} placeholder="Search"/>
                 <svg
+                    onClick={fetchData}
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
                     height="20"
@@ -119,6 +128,7 @@ const Code = () => {
                     strokeWidth="2"
                     className="feather feather-search"
                     viewBox="0 0 24 24"
+                    style={{cursor:"pointer"}}
                 >
                     <defs></defs>
                     <circle cx="11" cy="11" r="8"></circle>
