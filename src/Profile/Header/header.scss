@@ -88,18 +88,18 @@
     transform: scale(0);
     transition: all 0.3s ease;
   }
-  .dayNight input:checked + div {
-    box-shadow: inset 32px -32px 0 0 #fff;
-    transform: scale(0.5) rotate(0deg);
-    transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
+  .active_theme {
+    box-shadow: inset 32px -32px 0 0 #fff !important;
+    transform: scale(0.5) rotate(0deg) !important;
+    transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s !important;
   }
-  .dayNight input:checked + div:before {
-    background: #9cd16b;
-    transition: background 0.3s ease 0.1s;
+  .active_theme:before {
+    background: #9cd16b !important; 
+    transition: background 0.3s ease 0.1s !important;
   }
-  .dayNight input:checked + div:after {
-    transform: scale(1.5);
-    transition: transform 0.5s ease 0.15s;
+ .active_theme:after {
+    transform: scale(1.5) !important;
+    transition: transform 0.5s ease 0.15s !important;
   }
   
 .dropdown-menu{

@@ -7,14 +7,13 @@ const Card_Box = ({image,course}) => {
     <>
     <div className="Course_card">
       <div className="course_image">
-        <img src={`https://project.vickytajpuriya.com/${image}`} alt={course} />
+        <img src={`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/${image}`} alt={course} />
       </div>
       <div className="text_area">
         <h1>{course}</h1>
-        {/* <p>{description.slice(0, 90)}</p> */}
       </div>
       <div className="Course_button_link">
-        <Link to={`${course}`} style={{backgroundColor: "#9cd16b"}}>View Course</Link>
+        <Link to={`${course}`} style={{backgroundColor: "#9cd16b"}}>View Tutorial</Link>
       </div>
     </div>
 

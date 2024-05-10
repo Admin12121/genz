@@ -9,7 +9,7 @@ import { getToken,storeToken, removeToken, storeMode, getMode } from '../Fetch_A
 import { useDispatch } from "react-redux";
 import {toast } from 'sonner';
 import ContextMenu from "./ContextMenu/ContextMenu";
-
+   
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Profile = () => {
 
   const card = useRef()
   const contextMenu = useRef();
-  const { data, isSuccess } = useGetLoggedUserQuery(access_token);
+  const { data, isSuccess } = useGetLoggedUserQuery();
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
 
  useEffect(() => {
@@ -133,6 +133,7 @@ const Profile = () => {
       <section className={`app-container`} ref={card} >
         <Header
          darkMode={handletoggle}
+         theme = {darkMode}
           name={data && data.name}
           profile={data && `https://project.vickytajpuriya.com${data.userinfo.profile}`}
           email={data && data.email}

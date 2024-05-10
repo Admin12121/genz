@@ -1,7 +1,4 @@
-import React, { useState} from "react";
-import {
-  getToken,
-} from "../../Fetch_Api//Service/LocalStorageServices";
+import React, { useEffect, useState} from "react";
 import {
   useGetLoggedUserQuery,
   useUpdateUserInfoMutation,
@@ -9,27 +6,33 @@ import {
 import "./Setting.scss";
 import { useNavigate} from "react-router-dom";
 import { fetchDataWithRetry } from '../../Fetch_Api/Service/fetchwithRetry';
+import { toast } from "sonner";
 const Settings = () => {
   const [Userinfo, { isLoading }] = useUpdateUserInfoMutation();
   const [selectedFile, setSelectedFile] = useState(null);
   const [userData, setuserData] = useState()
-  const { access_token } = getToken();
   const navigate = useNavigate();
 
-  // const {
-  //   data: userData,
-  //   isSuccess: userSuccess,
-  //   isError: userError,
-  // } = useGetLoggedUserQuery(access_token);
   async function fetchData() {
     try {
-      const projectData = await fetchDataWithRetry(useGetLoggedUserQuery , access_token);
+      const projectData = await fetchDataWithRetry(useGetLoggedUserQuery);
       setuserData(projectData.data)
+      console.log(userData)
     } catch (error) {
       console.error('Failed to fetch data:', error);
     }
   }
   fetchData();
+
+  useEffect(()=>{
+    const file = selectedFile;
+    if(file){
+      const limit = 1024 * 1024;
+      if(file.size > limit){
+        toast.warning("Image size exceed the limit (1MB)")
+      }
+    }
+  },[selectedFile]) 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -38,9 +41,9 @@ const Settings = () => {
     };
     
     // Check if each field is not null or empty, and include it in actualData if true
-    // if (data.get("profile")) {
-    //   actualData.profile = data.get("profile");
-    // }
+    if (selectedFile) {
+      actualData.profile = data.get("profile");
+    }
     if (data.get("addresh")) {
       actualData.address = data.get("addresh");
     }
@@ -50,14 +53,14 @@ const Settings = () => {
     if (data.get("portfolio")) {
       actualData.portfolio = data.get("portfolio");
     }
-    const res = await Userinfo({actualData, access_token});
+    const res = await Userinfo({actualData});
     
     if (res.error) {
-      console.log(res.error)
+      toast.success(res.error.data.errors.profile)
     }
     if (res.data) {
       navigate('/')
-      console.log(res.data)
+      toast.success(res.data.msg)
     }
   };
 
@@ -67,13 +70,13 @@ const Settings = () => {
         style={{ display: "flex", alignItems: "center" }}
         className="projects-section"
       >
-        <form className="user_form" action="#" onSubmit={handleSubmit}>
+        <form className="user_form" action="#" onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="profile_Image" style={{width:"200px", background:"none"}}>
           <p>Profile Picture</p>
           <div className="image_wrapper">
-         {userData && <img src={selectedFile ? URL.createObjectURL(selectedFile) : `https://project.vickytajpuriya.com${userData.userinfo.profile}`} alt="" />}
+         {userData && <img src={selectedFile ? URL.createObjectURL(selectedFile) : `${import.meta.env.VITE_KEY_BACKEND_DOMAIN}${userData.userinfo.profile}`} alt="" />}
             <span>
-              <input type="file" name="profile" id="" onChange={(e) => setSelectedFile(e.target.files[0])}/>
+              <input type="file" name="profile" id="" onChange={(e) => {setSelectedFile(e.target.files[0])}}/>
               <svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                   <g id="Iconly/Light/Filter" stroke="#000000"  strokeWidth="1.5"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
                       <g id="Filter" transform="translate(4.000000, 4.500000)" stroke="var(--main-color)"  strokeWidth="1.5" >
@@ -123,6 +126,7 @@ const Settings = () => {
               aria-label="Email address"
               className="Nameuser"
               name="email"
+              disabled
             />
             <div className="Editinput">
               <button type="submit" aria-label="Submit" className="submitedit">

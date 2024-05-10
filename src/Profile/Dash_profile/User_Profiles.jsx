@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { getToken } from "../../Fetch_Api//Service/LocalStorageServices";
 import {  useGetUserProfileQuery, useViewQuery } from "../../Fetch_Api/Service/User_Auth_Api";
 import {useNavigate, useParams, Link } from 'react-router-dom';
 import './UserProjects.scss'
@@ -10,7 +9,6 @@ import Loader from '../../Components/Loader';
 import Load from "../../Components/Load"
 const User_Profiles = () => {
     const {username} = useParams();
-    const { access_token } = getToken();
     const [user,setUser] = useState()
     const [projectData, setprojectData] = useState([]);
     const [page, setPage] = useState(1);
@@ -20,7 +18,7 @@ const User_Profiles = () => {
       data: userData,
       isSuccess: userSuccess,
       isError: userError,
-    } = useGetUserProfileQuery({access_token,username});
+    } = useGetUserProfileQuery({username});
 
     useEffect(() => {
       if (userData && userData.length > 0 && userData[0]) {
@@ -154,7 +152,7 @@ const ProjectCard = ({ project }) => {
                   <span className="user-project">
                       <span>
                           <Link to={`/${username}`}>
-                              <img src={`https://project.vickytajpuriya.com${profile}`} alt="" />
+                              <img src={`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}${profile}`} alt="" />
                           </Link>
                       </span>
                       <span>

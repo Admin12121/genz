@@ -8,7 +8,6 @@ import {getMode} from '../../../Fetch_Api/Service/LocalStorageServices'
 import './video.scss'
 import './player.css'
 import Loader from '../../../Components/Loader'
-import { getToken} from "../../../Fetch_Api/Service/LocalStorageServices";
 import { useCourseQuery } from "../../../Fetch_Api/Service/User_Auth_Api";
 
 
@@ -17,7 +16,7 @@ const Video = () => {
   const LazyLoadedComponent = lazy(() => import("./Player"));
   const [copy,setCopy] = useState(false);
   const [mode, setDarkModee] = useState(getMode());
-  const { access_token } = getToken();
+
   useEffect(() => {
     setDarkModee(getMode());
   }, []);
@@ -25,8 +24,9 @@ const Video = () => {
     data: Data,
     isSuccess: userSuccess,
     isError: userError,
- } = useCourseQuery({access_token,video_title});
+ } = useCourseQuery({video_title});
 
+    console.log(Data)
      if (!Array.isArray(Data)) {
        // Display a loading state or handle the case where data is not an array
        return <> 
@@ -67,9 +67,9 @@ const Video = () => {
       responsive: true,
       fluid: true,
       playbackRates: [0.5,1,1.5,2],
-      poster:`${Data[0].videourl}`,
+      // poster:`${Data[0].videourl}`,
       sources: [{
-        src: `https://project.vickytajpuriya.com/${Data[0].video}`,
+        src: `${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/${Data[0].video}`,
         type: 'video/mp4'
       }]
     };

@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { getToken} from "../../Fetch_Api//Service/LocalStorageServices";
 import { useGetLoggedUserQuery } from "../../Fetch_Api/Service/User_Auth_Api";
 import "./dash.scss";
 import { Link } from "react-router-dom";
 
 const Dash_Profile = () => {
-  const { access_token } = getToken();
+
   const {
     data: userData,
     isSuccess: userSuccess,
     isError: userError,
-  } = useGetLoggedUserQuery(access_token);
+  } = useGetLoggedUserQuery();
 
   return (
     <>

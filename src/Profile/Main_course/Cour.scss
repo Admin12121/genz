@@ -26,13 +26,18 @@ a {
     background-color: var(--app-container);
     border: 1px solid #eceff133;
     border-radius: 16px;
+    overflow: hidden;
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
 
     
     @media screen and (max-width: 1230px) {
         position: absolute;
         z-index: 99;
         left: 10px;
-        background: rgba(255, 255, 255, 0.2);
+        background: var(--glass-section);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(5px);
@@ -72,8 +77,12 @@ a {
         gap: 1.25em;
         width: 100%;
 
-
-
+        .Cont_Topic{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 100%;
+        }
 
         .Topic_Title {
             cursor: pointer;
@@ -88,10 +97,17 @@ a {
 
         .Title_content {
             cursor: pointer;
-            height: 25px;
+            height: 30px;
             display: flex;
             align-items: center;
             overflow: hidden;
+            width: 100%;
+            background-color: var(--projects-section);
+            border-radius: 7px;
+            padding: 0 10px;
+            @media screen and (max-width: 1230px) {
+                background-color: var(--glass-container);
+            }
 
             span {
                 display: flex;

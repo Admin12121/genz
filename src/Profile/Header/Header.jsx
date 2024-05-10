@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import { Link , useParams} from "react-router-dom";
 import "./header.scss";
 
-const Header = ({ handleLogout, name, profile, email, darkMode }) => {
+const Header = ({ handleLogout,theme, name, profile, email, darkMode }) => {
   const [open, setOpen] = useState(false);
   const {username, project_title} = useParams();
   let menuRef = useRef();
@@ -20,12 +20,9 @@ const Header = ({ handleLogout, name, profile, email, darkMode }) => {
       document.removeEventListener("mousedown", handler);
     }
   });
-
   return (
     <div className="app-header">
       <div className="app-header-left">
-        {/* <span className="app-icon"></span> */}
-        {/* <p className="app-name">Portfolio</p> */}
         <div
           className="logo"
         >
@@ -48,7 +45,7 @@ const Header = ({ handleLogout, name, profile, email, darkMode }) => {
         <button className="mode-switch"  title="Switch Theme">
           <label className="dayNight">
             <input type="checkbox" onClick={darkMode} />
-            <div></div>
+            <div className={`${theme == "dark" ? "" : "active_theme"}`}></div>
           </label>
         </button>
         <p style={{color:"var(--main-color)"}}>|</p>

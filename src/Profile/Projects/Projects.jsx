@@ -3,14 +3,12 @@ import "./Editor.scss";
 import "./create.scss";
 import { useNavigate, Link } from 'react-router-dom';
 import {toast } from 'sonner';
-import { getToken} from "../../Fetch_Api//Service/LocalStorageServices";
 import { useGetLoggedUserQuery,useProjectsMutation } from "../../Fetch_Api/Service/User_Auth_Api";
 
 
 const Projects = () => {
   const [project, setproject] = useState(false);
   const [projects, { isLoading }] = useProjectsMutation();
-  const { access_token } = getToken();
   const navigate = useNavigate();
   const [server_error, setServerError] = useState('');
   
@@ -18,11 +16,12 @@ const Projects = () => {
     data: userData,
     isSuccess: userSuccess,
     isError: userError,
-    refetch: refetchUser, // Destructure the refetch function from the query result
-  } = useGetLoggedUserQuery(access_token);
-
+    refetch
+  } = useGetLoggedUserQuery();
   useEffect(() => {
-    // Load initial project data
+    refetch();
+  }, [navigate]);
+  useEffect(() => {
     loadProjectData(userData);
   }, [userData]);
 
@@ -163,9 +162,6 @@ const Projects = () => {
     }
   };
 
-  useEffect(()=>{
-    refetchUser();
-  },[])
   return (
     <>
       <div className={`projects-section project-view`} >
@@ -210,7 +206,7 @@ const Projects = () => {
               <span className="user-project">
                   <span>
                     <Link to={`/${username}`}>
-                      <img src={`https://project.vickytajpuriya.com${profile}`} alt="" />
+                      <img src={`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}${profile}`} alt="" />
                     </Link>
                   </span>
                   <span>
@@ -229,7 +225,7 @@ const Projects = () => {
                           </g>
                       </svg>
                       <p>star |</p>
-                <p>{likes}</p>
+                <p>{likes.length}</p>
                 </span>
               </span>
           </div>

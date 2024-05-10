@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useParams,Link, Outlet } from 'react-router-dom';
 import './Cour.scss'
-import { getToken} from "../../Fetch_Api/Service/LocalStorageServices";
 import { useCourseQuery } from "../../Fetch_Api/Service/User_Auth_Api";
 import Loader from '../../Components/Loader'
 const Main_course = () => {
-  
-  const { access_token } = getToken();
+
   const {name} = useParams();
   const {
      data: Data,
      isSuccess: userSuccess,
      isError: userError,
-  } = useCourseQuery({access_token,name});
+  } = useCourseQuery({name});
 
      const [display,setDisplay] = useState([]);
      const [isArrowVisible, setArrowVisible] = useState([]);
@@ -52,17 +50,20 @@ const Main_course = () => {
    const sidebarStyle = {
      width: disp && windowWidth < 1230 ? '70%' : '0%',
      height: disp && windowWidth < 1230 ? '97%' : '20%',
-     top: disp && windowWidth < 1230 ? '2%' : '35%',
+     top: disp && windowWidth < 1230 ? '1.5%' : '35%',
      padding: disp && windowWidth < 1230 ? '' : '5px',
      left: disp && windowWidth < 1230 ? '10px' : '0px',
      overflow: "hidden",
+     overflowY : "auto",
+     padding:  disp && windowWidth < 1230 ? "15px 5px 15px 20px" : "4px",
+     gap:"5px"
    };
 
   return (
     <>
        <div className="project_course_section mtrt">
        <div  style={ handleWidth < 1230 ? sidebarStyle : {width:"30%" }} className="Course_title_wrapper">
-          <div  className="txt_syllabus">
+          <div  className="txt_syllabus" style={{display:`${ disp && windowWidth < 1230 ?  'flex' : `${windowWidth > 1230 ? "flex" : "none"}`} `,flexDirection: "column"}}>
          <h1>{Data && Data[0].name}</h1>
         {Data && Data[0].syllabi.map(({ nameof_syllabus1,coursedata_set}, index) => (
         <div key={index} className="Cont_Topic">

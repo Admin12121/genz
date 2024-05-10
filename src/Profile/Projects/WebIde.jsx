@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import {useProjectdataQuery, useUpdateprojectsMutation, useDeleteprojectsMutation  } from "../../Fetch_Api/Service/User_Auth_Api";
 import { useNavigate } from 'react-router-dom';
 import Loader from "../../Components/Loader";
-import { getToken} from '../../Fetch_Api/Service/LocalStorageServices';
 
 const WebIde = () => {
   const [updateprojects, { isLoading }] = useUpdateprojectsMutation();
@@ -27,7 +26,6 @@ const WebIde = () => {
   const [jsHeight, setJsHeight] = useState(gridi ? "0%" : "20%");
   const [mode, setmode] = useState();
   const [screen ,setScreen] = useState(false)
-  const { access_token } = getToken();
   const {username, project_title} = useParams();
   const [Data, setData] = useState('');
   const id = Data.id || Data[0] && Data[0].id
@@ -35,7 +33,7 @@ const WebIde = () => {
     data: data,
     isSuccess: userSuccess,
     isError: userError,
-  } = useProjectdataQuery({username, project_title, access_token});
+  } = useProjectdataQuery({username, project_title});
   useEffect(() => {
     if(data){
       setData(data.results[0])

@@ -9,11 +9,7 @@ const ProjectsSection = () => {
   const { access_token } = getToken();
   const [loading, setLoading] = useState(true);
   const [Data, setData] = useState();
-  // const {
-  //   data: Data,
-  //   isSuccess: userSuccess,
-  //   isError: userError,
-  // } = useCourseQuery({access_token});
+
   async function fetchData() {
     try {
       const projectData = await fetchDataWithRetry(useCourseQuery, {
@@ -67,7 +63,7 @@ const ProjectsSection = () => {
   return (
     <div className="projects-section">
       <div className="projects-section-header mounter">
-        <p>Courses</p>
+        <p>Tutorials</p>
         <div className="search-wrapper">
           <input
             className="search-input"
@@ -111,7 +107,7 @@ const Skleton = () =>{
           <h1 style={{background:"var(--app-container)" ,width: "50%", height: "30px"}}></h1>
         </div>
         <div className="Course_button_link">
-          <a style={{backgroundColor: "#9cd16b", color:"#9cd16b"}}>View Course</a>
+          <a style={{backgroundColor: "#9cd16b", color:"#9cd16b"}}>View Tutorials</a>
         </div>
     </div>
     <div style={{width:"20rem" ,height: "250px", display:"flex",justifyContent: "center"}}>

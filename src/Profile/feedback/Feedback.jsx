@@ -2,14 +2,13 @@ import { useRef } from 'react';
 import "./feedback.scss";
 import {toast } from 'sonner';
 import {useGetLoggedUserQuery, useFeedbackMutation  } from "../../Fetch_Api/Service/User_Auth_Api";
-import { getToken} from '../../Fetch_Api/Service/LocalStorageServices';
+
 const Feedback = () => {
     const formRef = useRef(null);
-    const { access_token } = getToken();
     const [ Feedback, {isLoading}] = useFeedbackMutation();
     const {
         data: userData,
-      } = useGetLoggedUserQuery(access_token);
+      } = useGetLoggedUserQuery();
 
     const HandleFeedback = async(e) => {
       e.preventDefault();
@@ -19,7 +18,7 @@ const Feedback = () => {
         answer: data.get("answer"),
       };
       try{
-        const res = await Feedback({actualData, access_token}) ;
+        const res = await Feedback({actualData}) ;
         if (res.error) {
           toast.error("Failed to Submit");
         }

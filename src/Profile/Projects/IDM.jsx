@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import SplitPane from "react-split-pane";
 import Editor from "@monaco-editor/react";
-import { useParams } from "react-router-dom";
+import {useBlocker , useParams } from "react-router-dom";
 import {useProjectdataQuery, useUpdateprojectsMutation, useDeleteprojectsMutation,useGetLoggedUserQuery  } from "../../Fetch_Api/Service/User_Auth_Api";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import Loader from "../../Components/Loader";
-import { getToken, getMode} from '../../Fetch_Api/Service/LocalStorageServices';
+import { getMode} from '../../Fetch_Api/Service/LocalStorageServices';
 import './style.scss'
 import {toast } from 'sonner';
 import DOMPurify from "dompurify";
@@ -25,7 +25,7 @@ const IDM = () => {
     const monacoEditorjs = useRef();
     const [gridi, setgridi] = useState(true);
     const [screen ,setScreen] = useState(false)
-    const { access_token } = getToken();
+    const [change ,setChange] = useState(false)
     const {username, project_title} = useParams();
     const [Data, setData] = useState('');
     const id = Data.id || Data[0] && Data[0].id
@@ -33,12 +33,13 @@ const IDM = () => {
     const [mode, setmode] = useState(theme);
     const {
       data: userData,
-    } = useGetLoggedUserQuery(access_token);
+    } = useGetLoggedUserQuery();
     const {
       data: data,
       isSuccess: userSuccess,
       isError: userError,
-    } = useProjectdataQuery({username, project_title, access_token});
+      refetch :refetch
+    } = useProjectdataQuery({username, project_title});
     useEffect(() => {
         if(data){
         setData(data.results[0])
@@ -59,6 +60,7 @@ const IDM = () => {
           window.removeEventListener('resize', handleResize);
         };
     }, [data]);
+
 
        if (loading) {
          return <>
@@ -137,12 +139,13 @@ const IDM = () => {
         };
     
         try {
-          const res = await updateprojects({username,access_token,project_title,actualData,id});
+          const res = await updateprojects({username,project_title,actualData,id});
           if (res.data) {
             if (save == false) {
               setSave(true);
               setprojectsett((prev) => !prev);
               toast.success(`Project Saved`);
+              refetch();
             }
           }
         } catch (error) {
@@ -163,7 +166,7 @@ const IDM = () => {
         };
     
         try {
-          const res = await updateprojects({username,access_token,project_title,actualData,id});
+          const res = await updateprojects({username,project_title,actualData,id});
           if (res.data) {
             if (save == false) {
               setSave(true);
@@ -176,7 +179,7 @@ const IDM = () => {
       };
 
   return (
-    <>
+    <>        
           <div
         className="project-container"
         style={{ display: `${projectsett ? "flex" : "none"}`, zIndex : 99999 }}
@@ -346,6 +349,7 @@ const IDM = () => {
                 getEditor();
                 if (save == true) {
                     setSave(false);
+                    setChange(false)
                 }
                 }}
                 acceptSuggestionOnCommitCharacter="true"
@@ -429,6 +433,7 @@ const IDM = () => {
                    getEditor();
                    if (save == true) {
                      setSave(false);
+                     setChange(false)
                    }
                  }}
                 acceptSuggestionOnCommitCharacter="true"
@@ -512,6 +517,7 @@ const IDM = () => {
                    getEditor();
                    if (save == true) {
                      setSave(false);
+                     setChange(false)
                    }
                  }}
                 acceptSuggestionOnCommitCharacter="true"

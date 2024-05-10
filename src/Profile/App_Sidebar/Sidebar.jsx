@@ -1,21 +1,26 @@
 import React,{useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation  } from "react-router-dom";
 import {motion} from "framer-motion"
 const Sidebar = () => {
-  const [activeLink, setActiveLink] = useState(localStorage.getItem('activeLink') || '');
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState("");
+
+  // Extract the base route from the URL
+  useEffect(() => {
+    const pathSegments = location.pathname.split("/");
+    const baseRoute = pathSegments[1]; // Get the first segment after "/"
+    setActiveLink(baseRoute);
+  }, [location.pathname]);
 
   // Update the localStorage when activeLink changes
   useEffect(() => {
-    localStorage.setItem('activeLink', activeLink);
+    localStorage.setItem("activeLink", activeLink);
   }, [activeLink]);
 
-  const handleLinkClick = (to) => {
-    setActiveLink(to);
-  };
   return (
     <div className="app-sidebar">
       <motion.span transition={{type:"spring" , stiffness:"200"}} whileHover={{scale:1.3}} whileTap={{scale:0.83}}>
-      <Link to='/code' onClick={()=> handleLinkClick("")} className={`app-sidebar-link ${activeLink === '' ? 'active' : ''}`}>
+      <Link to='/code'  className={`app-sidebar-link ${activeLink === 'code' || "" ? 'active' : ''}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -34,7 +39,7 @@ const Sidebar = () => {
       </Link>
       </motion.span>
       <motion.span transition={{type:"spring" , stiffness:"200"}} whileHover={{scale:1.3}} whileTap={{scale:0.83}}>
-      <Link to="courses" onClick={()=> handleLinkClick("courseses")} className={`app-sidebar-link ${activeLink === 'courseses' ? 'active' : ''}`}>
+      <Link to="courses" className={`app-sidebar-link ${activeLink === 'courses' ? 'active' : ''}`}>
         <svg
           className="link-icon feather feather-pie-chart"
           xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +58,7 @@ const Sidebar = () => {
       </Link>
       </motion.span>
       <motion.span transition={{type:"spring" , stiffness:"200"}} whileHover={{scale:1.3}} whileTap={{scale:0.83}}>
-      <Link to='project' onClick={()=> handleLinkClick("project")} className={`app-sidebar-link ${activeLink === 'project' ? 'active' : ''}`}>
+      <Link to='project' className={`app-sidebar-link ${activeLink === 'project' ? 'active' : ''}`}>
         <svg 
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -74,7 +79,7 @@ const Sidebar = () => {
       </Link>
       </motion.span>
       <motion.span transition={{type:"spring" , stiffness:"200"}} whileHover={{scale:1.3}} whileTap={{scale:0.83}}>
-      <Link to="settings" onClick={()=> handleLinkClick("settings")} className={`app-sidebar-link ${activeLink === 'settings' ? 'active' : ''}`}>
+      <Link to="settings" className={`app-sidebar-link ${activeLink === 'settings' ? 'active' : ''}`}>
         <svg
           className="link-icon feather feather-settings"
           xmlns="http://www.w3.org/2000/svg"

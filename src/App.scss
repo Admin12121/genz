@@ -34,3 +34,12 @@ section[aria-label="Notifications alt+T"]{
     position: absolute;
     top: 0;
 }
+#root{
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+#root::-webkit-scrollbar{
+    display: none;
+}
