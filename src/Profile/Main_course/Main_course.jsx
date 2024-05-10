@@ -51,7 +51,6 @@ const Main_course = () => {
      width: disp && windowWidth < 1230 ? '70%' : '0%',
      height: disp && windowWidth < 1230 ? '97%' : '20%',
      top: disp && windowWidth < 1230 ? '1.5%' : '35%',
-     padding: disp && windowWidth < 1230 ? '' : '5px',
      left: disp && windowWidth < 1230 ? '10px' : '0px',
      overflow: "hidden",
      overflowY : "auto",

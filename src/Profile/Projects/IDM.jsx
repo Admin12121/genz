@@ -118,10 +118,12 @@ const IDM = () => {
         e.preventDefault();
         try {
           const res = await deleteprojects({id,access_token,username});
-          toast.success(`Project Deleted`);
+          if(res.data){
+            toast.success(`Project Deleted`);
+          }
          navigate(`/project`)
         } catch (error) {
-          console.error("Error in HandleProjectSubmit:", error);
+          toast.error(`Something went wrong `)
         }
       }
     
@@ -149,7 +151,7 @@ const IDM = () => {
             }
           }
         } catch (error) {
-          console.error("Error in HandleProjectSubmit:", error);
+          toast.error(`Something went wrong`)
         }
       };
     
@@ -174,7 +176,7 @@ const IDM = () => {
             }
           }
         } catch (error) {
-          console.error("Error in HandleProjectSubmit:", error);
+          toast.error(`Something went wrong`);
         }
       };
 

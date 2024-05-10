@@ -147,7 +147,7 @@ const Projects = () => {
     };
 
     try {
-      const res = await projects({actualData, access_token});
+      const res = await projects({actualData});
       if (res.data) {
         setproject((prev) => !prev);
         toast.success(`${actualData.project_title} Created`);

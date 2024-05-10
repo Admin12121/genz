@@ -59,11 +59,14 @@
     margin-left: 10px;
     border-radius: 10px;
     border: none;
+    color: #000;
     width: 91.5%;
     height: 85%;
     padding: 0 0 0 10px;
   }
-  
+  .input::placeholder {
+    color: #000000;
+  }
   .input:focus {
     outline: none;
   }
@@ -191,7 +194,6 @@
      .svgcircle {
       fill: none;
       stroke: hsl(214, 97%, 59%);
-      stroke-width: 2;
       stroke-dasharray: 1, 200;
       stroke-dashoffset: 0;
       stroke-linecap: round;
