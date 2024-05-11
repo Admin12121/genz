@@ -5,7 +5,7 @@ import { getToken } from "./LocalStorageServices";
 export const userAuthapi = createApi({
   reducerPath: "userAuthapi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/user/`,
+    baseUrl: `https://project.vickytajpuriya.com/user/`,
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
