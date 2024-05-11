@@ -64,7 +64,6 @@ const AppContent = () => {
                  <Route path=":video_title" element={<Video />} />        
               </Route>
           <Route path="project" element={<Projects/>} />
-          {/* <Route path="/code/:username/:project_title" element={<WebIde/>}/> */}
           <Route path=":username" element={<User_Profiles />} />
           <Route path="code/" element={<Code />} />
           <Route path="/code/:username/:project_title" element={<IDM />} />

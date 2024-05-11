@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import SplitPane from "react-split-pane";
+import { SplitPane } from "react-collapse-pane";
 import Editor from "@monaco-editor/react";
 import {useBlocker , useParams } from "react-router-dom";
 import {useProjectdataQuery, useUpdateprojectsMutation, useDeleteprojectsMutation,useGetLoggedUserQuery  } from "../../Fetch_Api/Service/User_Auth_Api";
@@ -264,8 +264,27 @@ const IDM = () => {
       </div>
     <div  className="projects-section" style={{padding:"10px"}}>
     {data && !loading && 
-      (<SplitPane split={`${gridi ?  "horizontal" : !screen ? "vertical" : "horizontal"}`}>
-        <SplitPane minsize="5%" split={`${gridi  ?  "vertical" : !screen ? "horizontal" : "vertical" }`}>
+      (<SplitPane split={`${gridi ?  "horizontal" : !screen ? "vertical" : "horizontal"}`} 
+      resizerOptions={{
+        css: {
+          height: '10px',
+          position: "relative",
+        },
+        hoverCss: {
+          height: "20px",
+          background: "transparent",
+        },
+      }}>
+        <SplitPane minsize="5%" split={`${gridi  ?  "vertical" : !screen ? "horizontal" : "vertical" }`} 
+        resizerOptions={{
+          css: {
+            width: '10px',
+            position: "relative",
+          },
+          hoverCss: {
+            background: "transparent",
+          },
+          }}>
           <div className="Panal code_editor" >
           <div
                 className="code_header "
@@ -581,7 +600,7 @@ const IDM = () => {
               />
           </div>
         </SplitPane>
-        <div minsize="5%" className="Panal pre_view">
+         <div minsize="5%" className="Panal pre_view">
             <iframe id="output" ></iframe>
         </div>
       </SplitPane>)}
@@ -590,91 +609,91 @@ const IDM = () => {
   );
 };
 
-const Editor_wrapper = ({path, defaultLanguage, defaultValue, getEditor}) =>{
-  return(
-    <>
-              <Editor className="edit_me"
-                height={ "100%"}
-                width="100%"
-                theme="vs-dark"
-                path={path}
-                defaultLanguage={defaultLanguage}
-                defaultValue={defaultValue}
-                onMount={(editor, monaco) => {
-                    handlecodej(editor, monaco);
-                }}
-                //  path={files["script.js"].name}
-                //  defaultLanguage={files["script.js"].language}
-                //  defaultValue={files["script.js"].value}
-                //  onMount={(editor, monaco) => {
-                //    handlecodej(editor, monaco);
-                //  }}
-                 onChange={() => {
-                   getEditor();
-                   if (save == true) {
-                     setSave(false);
-                   }
-                 }}
-                acceptSuggestionOnCommitCharacter="true"
-                acceptSuggestionOnEnter="on"
-                accessibilitySupport="auto"
-                autoIndent="false"
-                automaticLayout="true"
-                colorDecorators="true"
-                codeLens="true"
-                contextmenu="true"
-                cursorBlinking="blink"
-                cursorSmoothCaretAnimation="false"
-                cursorStyle="line"
-                disableLayerHinting="false"
-                disableMonospaceOptimizations="false"
-                dragAndDrop="false"
-                fixedOverflowWidgets="false"
-                folding="true"
-                foldingStrategy="auto"
-                fontLigatures="false"
-                formatOnPaste="false"
-                formatOnType="false"
-                hideCursorInOverviewRuler="false"
-                highlightActiveIndentGuide="true"
-                links="true"
-                mouseWheelZoom="false"
-                multiCursorMergeOverlapping="true"
-                multiCursorModifier="alt"
-                overviewRulerBorder="true"
-                overviewRulerLanes="2"
-                quickSuggestions="true"
-                quickSuggestionsDelay="100"
-                readOnly="false"
-                renderControlCharacters="false"
-                renderFinalNewline="true"
-                renderIndentGuides="true"
-                renderLineHighlight="all"
-                renderWhitespace="none"
-                revealHorizontalRightPadding="30"
-                roundedSelection="true"
-                rulers="[]"
-                scrollBeyondLastColumn="5"
-                scrollBeyondLastLine="true"
-                selectOnLineNumbers="true"
-                selectionClipboard="true"
-                selectionHighlight="true"
-                showFoldingControls="mouseover"
-                smoothScrolling="false"
-                suggestOnTriggerCharacters="true"
-                wordBasedSuggestions="true"
-                wordSeparators={"~!@#$%^&*()-=+[{]}|; = '\".<>/?"}
-                wordWrap="on"
-                wordWrapBreakAfterCharacters="\t})]?|&;"
-                wordWrapBreakBeforeCharacters="{([+"
-                wordWrapBreakObtrusiveCharacters="."
-                wordWrapColumn="80"
-                wordWrapMinified="true"
-                wrappingIndent="none"
-              />
-    </>
-  )
-}
+// const Editor_wrapper = ({path, defaultLanguage, defaultValue, getEditor}) =>{
+//   return(
+//     <>
+//               <Editor className="edit_me"
+//                 height={ "100%"}
+//                 width="100%"
+//                 theme="vs-dark"
+//                 path={path}
+//                 defaultLanguage={defaultLanguage}
+//                 defaultValue={defaultValue}
+//                 onMount={(editor, monaco) => {
+//                     handlecodej(editor, monaco);
+//                 }}
+//                 //  path={files["script.js"].name}
+//                 //  defaultLanguage={files["script.js"].language}
+//                 //  defaultValue={files["script.js"].value}
+//                 //  onMount={(editor, monaco) => {
+//                 //    handlecodej(editor, monaco);
+//                 //  }}
+//                  onChange={() => {
+//                    getEditor();
+//                    if (save == true) {
+//                      setSave(false);
+//                    }
+//                  }}
+//                 acceptSuggestionOnCommitCharacter="true"
+//                 acceptSuggestionOnEnter="on"
+//                 accessibilitySupport="auto"
+//                 autoIndent="false"
+//                 automaticLayout="true"
+//                 colorDecorators="true"
+//                 codeLens="true"
+//                 contextmenu="true"
+//                 cursorBlinking="blink"
+//                 cursorSmoothCaretAnimation="false"
+//                 cursorStyle="line"
+//                 disableLayerHinting="false"
+//                 disableMonospaceOptimizations="false"
+//                 dragAndDrop="false"
+//                 fixedOverflowWidgets="false"
+//                 folding="true"
+//                 foldingStrategy="auto"
+//                 fontLigatures="false"
+//                 formatOnPaste="false"
+//                 formatOnType="false"
+//                 hideCursorInOverviewRuler="false"
+//                 highlightActiveIndentGuide="true"
+//                 links="true"
+//                 mouseWheelZoom="false"
+//                 multiCursorMergeOverlapping="true"
+//                 multiCursorModifier="alt"
+//                 overviewRulerBorder="true"
+//                 overviewRulerLanes="2"
+//                 quickSuggestions="true"
+//                 quickSuggestionsDelay="100"
+//                 readOnly="false"
+//                 renderControlCharacters="false"
+//                 renderFinalNewline="true"
+//                 renderIndentGuides="true"
+//                 renderLineHighlight="all"
+//                 renderWhitespace="none"
+//                 revealHorizontalRightPadding="30"
+//                 roundedSelection="true"
+//                 rulers="[]"
+//                 scrollBeyondLastColumn="5"
+//                 scrollBeyondLastLine="true"
+//                 selectOnLineNumbers="true"
+//                 selectionClipboard="true"
+//                 selectionHighlight="true"
+//                 showFoldingControls="mouseover"
+//                 smoothScrolling="false"
+//                 suggestOnTriggerCharacters="true"
+//                 wordBasedSuggestions="true"
+//                 wordSeparators={"~!@#$%^&*()-=+[{]}|; = '\".<>/?"}
+//                 wordWrap="on"
+//                 wordWrapBreakAfterCharacters="\t})]?|&;"
+//                 wordWrapBreakBeforeCharacters="{([+"
+//                 wordWrapBreakObtrusiveCharacters="."
+//                 wordWrapColumn="80"
+//                 wordWrapMinified="true"
+//                 wrappingIndent="none"
+//               />
+//     </>
+//   )
+// }
 
 export default IDM;
 
