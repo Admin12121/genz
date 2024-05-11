@@ -65,7 +65,6 @@ const Sign = () => {
       setServerError(res.error.data.errors);
     }
     if (res.data) {
-      console.log(res.data)
       toast.success(res.data.msg);
       navigate("/");
     }
@@ -81,7 +80,7 @@ const Sign = () => {
       <div className={style.flex_column}>
         <label  className={style.flex_columnlabel}>User Name </label>
       </div>
-      <div className={style.inputForm} style={{border: `${ server_error.non_field_errors || server_error.name ? "1px solid Red" :""}`}}>
+      <div className={style.inputForm} style={{border: `${ server_error && server_error.non_field_errors || server_error.name ? "1px solid Red" :""}`}}>
         <svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <g id="Iconly/Light/Profile" stroke="#000000"  strokeWidth="1"  fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
                 <g id="Profile" transform="translate(4.814286, 2.814476)" stroke="#000000" >
