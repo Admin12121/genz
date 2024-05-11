@@ -14,16 +14,16 @@ const Login_index = () => {
   const navigate = useNavigate();
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (Object.keys(server_error).length > 0) {
-      const errorKey = Object.keys(server_error)[0];
-      if (server_error[errorKey] && server_error[errorKey].length > 0) {
-        const errorMessage = server_error[errorKey][0];
-        toast.error(errorMessage );
-        console.log(server_error)
-      }
-    }
-  }, [server_error]);
+  // useEffect(() => {
+  //   if (Object.keys(server_error).length > 0) {
+  //     const errorKey = Object.keys(server_error)[0];
+  //     if (server_error[errorKey] && server_error[errorKey].length > 0) {
+  //       const errorMessage = server_error[errorKey][0];
+  //       toast.error(errorMessage );
+  //       console.log(server_error)
+  //     }
+  //   }
+  // }, [server_error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
