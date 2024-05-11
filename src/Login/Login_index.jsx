@@ -20,7 +20,7 @@ const Login_index = () => {
       if (server_error[errorKey] && server_error[errorKey].length > 0) {
         const errorMessage = server_error[errorKey][0];
         toast.error(errorMessage );
-        
+        console.log(server_error)
       }
     }
   }, [server_error]);
