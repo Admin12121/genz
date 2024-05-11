@@ -152,7 +152,7 @@ const ProjectCard = ({ project }) => {
                   <span className="user-project">
                       <span>
                           <Link to={`/${username}`}>
-                              <img src={`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}${profile}`} alt="" />
+                              <img src={`https://project.vickytajpuriya.com${profile}`} alt="" />
                           </Link>
                       </span>
                       <span>

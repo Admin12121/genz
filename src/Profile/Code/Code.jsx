@@ -38,7 +38,7 @@ const Code = () => {
 
     const fetchData = async () => {
         try {
-             const response = await axios.get(`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/user/projects/?filter=${query ? query : short}`);
+             const response = await axios.get(`https://project.vickytajpuriya.com/user/projects/?filter=${query ? query : short}`);
             if (page === 1) {
                 setprojectData(response.data.results);
             } else {
@@ -54,7 +54,7 @@ const Code = () => {
 
     const fetchmore = async  () =>  {
         const response = await axios.get( 
-            `${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/user/projects/?filter=${query ? query : short}&page=${page}`
+            `https://project.vickytajpuriya.com/user/projects/?filter=${query ? query : short}&page=${page}`
         );
 
         setprojectData((prev) => {
@@ -206,7 +206,7 @@ const Code = () => {
                      <span className="user-project">
                          <span>
                              <Link to={`/${username}`}>
-                                 <img src={`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/${profile}`} alt="" />
+                                 <img src={`https://project.vickytajpuriya.com/${profile}`} alt="" />
                              </Link>
                          </span>
                          <span>

@@ -69,7 +69,7 @@ const Video = () => {
       playbackRates: [0.5,1,1.5,2],
       // poster:`${Data[0].videourl}`,
       sources: [{
-        src: `${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/${Data[0].video}`,
+        src: `https://project.vickytajpuriya.com/${Data[0].video}`,
         type: 'video/mp4'
       }]
     };

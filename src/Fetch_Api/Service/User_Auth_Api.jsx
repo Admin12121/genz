@@ -283,7 +283,7 @@ export const {
 export const courseApi = createApi({
   reducerPath: "userAuthapi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/tutorials/`,
+    baseUrl: `https://project.vickytajpuriya.com/tutorials/`,
   }),
   endpoints: (builder) => ({
     course: builder.query({

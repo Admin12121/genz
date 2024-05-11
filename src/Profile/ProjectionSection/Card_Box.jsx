@@ -7,7 +7,7 @@ const Card_Box = ({image,course}) => {
     <>
     <div className="Course_card">
       <div className="course_image">
-        <img src={`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/${image}`} alt={course} />
+        <img src={`https://project.vickytajpuriya.com/${image}`} alt={course} />
       </div>
       <div className="text_area">
         <h1>{course}</h1>

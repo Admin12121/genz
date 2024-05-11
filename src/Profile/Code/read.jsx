@@ -39,7 +39,7 @@ const Code = () => {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/user/projects/?filter=${query ? query : short}`);
+            const response = await axios.get(`https://project.vickytajpuriya.com/user/projects/?filter=${query ? query : short}`);
             if (page === 1) {
                 setProjectData(response.data.results);
             } else {
@@ -56,7 +56,7 @@ const Code = () => {
 
     const fetchMore = async () => {
         const response = await axios.get(
-            `${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/user/projects/?filter=${query ? query : short}&page=${page}`
+            `https://project.vickytajpuriya.com/user/projects/?filter=${query ? query : short}&page=${page}`
         );
         setProjectData(prev => [...prev, ...response.data.results]);
     };
@@ -75,7 +75,7 @@ const Code = () => {
 
     const handleLike = async (id) => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_KEY_BACKEND_DOMAIN}/user/projects/like/${id}`);
+            const response = await axios.post(`https://project.vickytajpuriya.com/user/projects/like/${id}`);
             if (response.data.msg) {
                 toast.success(response.data.msg);
                 // Update local liked projects state

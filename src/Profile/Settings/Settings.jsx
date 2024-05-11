@@ -74,7 +74,7 @@ const Settings = () => {
         <div className="profile_Image" style={{width:"200px", background:"none"}}>
           <p>Profile Picture</p>
           <div className="image_wrapper">
-         {userData && <img src={selectedFile ? URL.createObjectURL(selectedFile) : `${import.meta.env.VITE_KEY_BACKEND_DOMAIN}${userData.userinfo.profile}`} alt="" />}
+         {userData && <img src={selectedFile ? URL.createObjectURL(selectedFile) : `https://project.vickytajpuriya.com${userData.userinfo.profile}`} alt="" />}
             <span>
               <input type="file" name="profile" id="" onChange={(e) => {setSelectedFile(e.target.files[0])}}/>
               <svg width="24px"  height="24px"  viewBox="0 0 24 24"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
