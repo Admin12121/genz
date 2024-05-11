@@ -59,7 +59,7 @@ const Login_index = () => {
       <div className={style.flex_column}>
         <label  className={style.flex_columnlabel}>Email </label>
       </div>
-      <div className={style.inputForm} style={{border: `${server_error && server_error.non_field_errors || server_error.email ? "1px solid Red" :""}`}}>
+      <div className={style.inputForm} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -76,7 +76,7 @@ const Login_index = () => {
       <div className={style.flex_column}>
         <label className={style.flex_columnlabel}>Password </label>
       </div>
-      <div className={style.inputForm} style={{border: `${server_error && server_error.non_field_errors || server_error.password ? "1px solid Red" :""}`}}>
+      <div className={style.inputForm} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -108,7 +108,7 @@ const Login_index = () => {
         </div>
         <Link to='/login/sendpasswordresetemail' className={style.span}>Forgot Password ?</Link>
       </div>
-      {<p className={`${style.p} ${style.line}`}>{server_error && server_error.non_field_errors || server_error.password || server_error.email }</p>}
+      {/* {<p className={`${style.p} ${style.line}`}>{server_error && server_error.non_field_errors || server_error.password || server_error.email }</p>} */}
      {isLoading ? <button disabled style={{background:'#151717f2'}} className={style.button_submit}><svg className={style.svg_loader} viewBox="25 25 50 50"><circle className={style.svgcircle} r="20" cy="50" cx="50"></circle></svg></button> : <button className={style.button_submit}>Sign In</button>}
       <p className={style.p}>
         Don't have an account? <Link to="/signup" className={style.span}>Sign Up</Link>
