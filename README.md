@@ -1,5 +1,5 @@
 
-#  Learner
+#  Genz
 
   Introducing my innovative project tailored for beginners entering the coding world. Our platform serves
 as a comprehensive hub, housing a wealth of notes, information, documents, and a virtual environment dedicated to
@@ -35,6 +35,6 @@ enjoyable.
  npm run dev
 ```
 
-## Demo
-Currently Unavailable
+## Live
+[Live Url](https://genz.vickytajpuriya.com/login) 
 
