@@ -20,6 +20,11 @@ enjoyable.
 
 
   This project is built using Django for the backend and React for the frontend as the main Tech and Vite for package management in the frontend React application.
+
+## Demo account 
+email : admin@gmail.com
+password : admin
+
 ## Installation
 
 
